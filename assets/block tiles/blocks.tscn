@@ -1,16 +1,23 @@
 [gd_scene load_steps=5 format=3 uid="uid://cteyyy3sosvm4"]
 
-[ext_resource type="PackedScene" uid="uid://dh5lqy07aa8a7" path="res://assets/block tiles/block.tscn" id="1_4vp5w"]
-[ext_resource type="PackedScene" uid="uid://rpvd5cqe6jcu" path="res://assets/block tiles/control.tscn" id="2_lyvw3"]
-[ext_resource type="PackedScene" uid="uid://dlb6okrwn6srt" path="res://assets/block tiles/gyro.tscn" id="3_n4inv"]
-[ext_resource type="PackedScene" uid="uid://6w8wgjacv1ll" path="res://assets/block tiles/thruster.tscn" id="4_qlhv7"]
+[ext_resource type="PackedScene" uid="uid://duri7mphvsyes" path="res://assets/block tiles/thruster - thruster.gltf" id="1_vrcww"]
+[ext_resource type="PackedScene" uid="uid://cdl51fnw0g4ip" path="res://assets/block tiles/basicBlock - basic block.gltf" id="2_g02d8"]
+[ext_resource type="PackedScene" uid="uid://d0tvtjnykpt0i" path="res://assets/block tiles/bigBlockSlope - bigSlope.gltf" id="3_6ptpo"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ptwc3"]
+points = PackedVector3Array(-0.1, -0.1, -0.1, 0.0999954, 0.1, 0.1, 0.0999954, 0.1, -0.1, 0.0999954, -0.1, 0.1, -0.1, 0.1, 0.1, 0.0999954, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1, 0.1)
 
 [node name="blocks" type="Node3D"]
 
-[node name="Block" parent="." instance=ExtResource("1_4vp5w")]
+[node name="Root" parent="." instance=ExtResource("1_vrcww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0173414, -0.0227263, -0.26835)
 
-[node name="Control" parent="." instance=ExtResource("2_lyvw3")]
+[node name="Root2" parent="." instance=ExtResource("2_g02d8")]
 
-[node name="Gyro" parent="." instance=ExtResource("3_n4inv")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Root2"]
+shape = SubResource("ConvexPolygonShape3D_ptwc3")
 
-[node name="Thruster" parent="." instance=ExtResource("4_qlhv7")]
+[node name="Root3" parent="." instance=ExtResource("3_6ptpo")]
+
+[editable path="Root"]
+[editable path="Root2"]

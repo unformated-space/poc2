@@ -14,7 +14,7 @@ var move_input :=Vector3.ZERO
 var velocity := Vector3.ZERO
 var acceleration = 0.5
 var accel_multiplier = 3.0
-var max_speed = 9.0
+var max_speed = 12.0
 var sprint_speed = 12.0
 var normal_speed = 7.0
 # Handle input events
@@ -52,7 +52,7 @@ func _process(delta):
 func _physics_process(delta):
 	rotate_y(camera_controller.cameraAngle)
 	camera_controller.cameraAngle = 0.0
-	var speed = 0.0
+
 	var direction = Vector3.ZERO
 	if Input.is_action_pressed("move_fwd"):
 		direction += -transform.basis.z
@@ -81,7 +81,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("jump") && !jumping:
 		direction.y += 50
 		jumping = true
-		
+	
+	
+	var speed = 0.0
 	if Input.is_action_pressed("sprint-boost"):
 		speed = sprint_speed
 	else:
@@ -94,7 +96,7 @@ func _physics_process(delta):
 		dampeners = !dampeners
 
 	if jetpack:
-		speed *=1.5
+		speed =20
 		if dampeners:
 			linear_damp = 5
 		else:
@@ -109,16 +111,17 @@ func _physics_process(delta):
 	#text.append_text(str(linear_damp)+"\n")
 	#
 	
-	if direction.length() > 0:
-		direction = direction.normalized() * speed
+	#if direction.length() > 0:
+		#direction = direction.normalized() * speed
 
 
-	apply_central_force(direction * 10)
-	# Limit the maximum speed
-	var current_speed = linear_velocity.length()
-	var max_speed = 100  # Change this value to your desired maximum speed
-	
+	apply_central_force(direction.normalized()*100)
+	# Obtener la velocidad actual del RigidBody
+	var current_velocity = linear_velocity
+	var current_speed = current_velocity.length()
 
-	
-	if current_speed > max_speed:
-		linear_velocity = linear_velocity.normalized() * max_speed
+	# Comprobar si la velocidad excede el máximo permitido
+	if current_speed > speed:
+		# Ajustar la velocidad para mantenerla dentro del límite máximo
+		current_velocity = current_velocity.normalized() * speed
+		linear_velocity = current_velocity

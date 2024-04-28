@@ -32,7 +32,7 @@ func _process (delta):
 	#if controller != null && typeof(controller) == 24 && !in_first_person:
 		#spring_arm_3d.add_excluded_object(controller)
 
-	text.append_text(str(origin_camera_x)+","+str(spring_arm_3d.rotation.x)+","+str(centering_camera)+"\n")
+	#text.append_text(str(origin_camera_x)+","+str(spring_arm_3d.rotation.x)+","+str(centering_camera)+"\n")
 	free_looking = false
 	#managing the lengh of the spring in third person
 	if in_first_person:

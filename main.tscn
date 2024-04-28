@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cyd875q6sea7d" path="res://assets/textures/kenney_prototype_textures/dark/texture_01.png" id="2_br0sc"]
 [ext_resource type="Texture2D" uid="uid://cc2qs5we0kmid" path="res://assets/textures/kenney_prototype_textures/purple/texture_01.png" id="4_isu3i"]
 [ext_resource type="PackedScene" uid="uid://dhewxo8l8t8jg" path="res://scenes/gui/GUI.tscn" id="5_vrbje"]
-[ext_resource type="MeshLibrary" uid="uid://d22c0wlbml8cs" path="res://assets/block tiles/blocks.tres" id="6_63gxh"]
+[ext_resource type="MeshLibrary" uid="uid://41clbmkrp0v7" path="res://assets/block tiles/blocks.tres" id="6_63gxh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_75neh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -55,7 +55,7 @@ shape = SubResource("ConvexPolygonShape3D_7smqk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 material_override = SubResource("StandardMaterial3D_4rnqm")
 use_collision = true
-size = Vector3(100, 0.5, 100)
+size = Vector3(1000, 0.5, 1000)
 
 [node name="Entity" parent="." instance=ExtResource("1_dv0ft")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28761, 0)
@@ -73,3 +73,8 @@ offset_bottom = -98.0
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("6_63gxh")
+cell_size = Vector3(0.2, 0.2, 0.2)
+data = {
+"cells": PackedInt32Array(65524, 65532, 196609, 65524, 65531, 196609, 65524, 65530, 196609, 65524, 65529, 196609, 65524, 65528, 196609, 65524, 65527, 196609, 65524, 65526, 196609, 65524, 65525, 196609, 65523, 65525, 196609, 65523, 65524, 196609, 65523, 65523, 196609, 65522, 65522, 196609, 65521, 65522, 196609, 65520, 65522, 196609, 65519, 65522, 196609, 65518, 65522, 196609, 65518, 65523, 196609, 65517, 65523, 196609, 65516, 65525, 196609, 65516, 65526, 196609, 65515, 65527, 196609, 65517, 65532, 196609, 65518, 65533, 196609, 65518, 65534, 196609, 65519, 65534, 196609, 65520, 65534, 196609, 65521, 65534, 196609, 65522, 65534, 196609, 65522, 65533, 196609, 65523, 65533, 196609, 65523, 65532, 196609, 65522, 65531, 196609, 65522, 65530, 196609, 65520, 65529, 196609, 65519, 65528, 196609, 65517, 65528, 196609, 65517, 65525, 196609, 65518, 65524, 196609, 65519, 65524, 196609, 65520, 65524, 196609, 65520, 65525, 196609, 65521, 65525, 196609, 65521, 65526, 196609, 65520, 65527, 196609, 65519, 65529, 196609, 65518, 65530, 196609, -131093, 65530, 589826, -131083, 65523, 589826, -131093, 65517, 589826, 65514, 65531, 1179650, 65514, 65534, 1179650, 65514, 0, 458754, 65510, 65529, 2, 65509, 65533, 196610, 65506, 65529, 196609, 65507, 65528, 196609, 65507, 65526, 196609, 65506, 65525, 196609, 65505, 65525, 196609, 65505, 65526, 196609, 65505, 65527, 196609, 65506, 65527, 196609)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
