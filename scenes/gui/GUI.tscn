@@ -1,36 +1,45 @@
 [gd_scene format=3 uid="uid://dhewxo8l8t8jg"]
 
-[node name="Control" type="Control"]
+[node name="GUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 6.0
-offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_horizontal_guides_ = [-765.0]
+metadata/_edit_vertical_guides_ = [28.0]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 1.00521
+anchor_bottom = 0.996914
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="log" type="RichTextLabel" parent="."]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 13.0
-offset_top = 435.0
-offset_right = -742.0
-offset_bottom = -12.0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
 text = "
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="speed" type="Label" parent="."]
 layout_mode = 2
-anchor_left = 0.0277778
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 17.8333
+offset_left = 50.0
 offset_top = 68.0
 offset_right = -988.381
 offset_bottom = -526.009
+metadata/_edit_use_anchors_ = true
 
 [node name="jetpack" type="Label" parent="."]
 layout_mode = 2
@@ -41,6 +50,7 @@ offset_top = 133.0
 offset_right = -1019.0
 offset_bottom = -456.0
 rotation = -0.00466949
+metadata/_edit_use_anchors_ = true
 
 [node name="dampeners" type="Label" parent="."]
 layout_mode = 2
@@ -49,6 +59,7 @@ offset_top = -410.0
 offset_right = 99.0
 offset_bottom = -387.0
 rotation = 0.0117755
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
@@ -65,18 +76,4 @@ freelook = tab (first and third)
 jepack = x
 dampeners = z (while jetpack)
 interact = f"
-
-[node name="GUI" type="Control" parent="."]
-layout_mode = 1
-anchor_right = 1.005
-anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = -264.0
-offset_right = 0.23999
-offset_bottom = -264.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-metadata/_edit_horizontal_guides_ = [-765.0]
-metadata/_edit_vertical_guides_ = [28.0]
+metadata/_edit_use_anchors_ = true
