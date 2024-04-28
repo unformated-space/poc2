@@ -21,42 +21,62 @@ func _ready():
 var in_first_person := true
 var free_looking := false
 var springArmLengh := 3.0
-var originCameraX := 0.0
-var centeringCamera := false
+var origin_camera_x := 0.0
+var switch_view_delta_key := 0.0
+var centering_camera := false
+var lerp_factor = 0.0
+
 ## TODO add a way to set spring arm in a normal third person camera beside the lengh
 @onready var text = get_node("../../../GUI/log")
 func _process (delta):
 	#if controller != null && typeof(controller) == 24 && !in_first_person:
 		#spring_arm_3d.add_excluded_object(controller)
 
-	#text.append_text(str(originCameraX)+","+str(spring_arm_3d.rotation.x)+","+str(centeringCamera)+"\n")
+	text.append_text(str(origin_camera_x)+","+str(spring_arm_3d.rotation.x)+","+str(centering_camera)+"\n")
 	free_looking = false
 	#managing the lengh of the spring in third person
 	if in_first_person:
 		spring_arm_3d.spring_length=0.0
 	else:
 		spring_arm_3d.spring_length = springArmLengh
-		
+	
+	if (switch_view_delta_key > 0.0):
+		switch_view_delta_key += delta
+	if (switch_view_delta_key > 0.3):
+		switch_view_delta_key = 0.0
+
 	#switch view
-	if Input.is_action_just_released("switchView"):
+	if Input.is_action_just_released("switchView"):		
 		print ("switch")
 		in_first_person = !in_first_person
+	if Input.is_action_just_pressed("freeLook"):
+		if (switch_view_delta_key > 0.0 && switch_view_delta_key < 0.25):
+			switch_view_delta_key = 0.0
+			lerp_factor = 0.0
+			centering_camera = true
+		if switch_view_delta_key == 0.0:
+			switch_view_delta_key = delta
+		free_looking = false
 	if Input.is_action_pressed("freeLook"):
-		if !centeringCamera:
-			originCameraX = spring_arm_3d.rotation.x
-			centeringCamera = true
-		free_looking = !free_looking
-	
+		if !centering_camera:
+			origin_camera_x = spring_arm_3d.rotation.x
+			# centering_camera = true
+		free_looking = true
+
 	#when stop free_looking center camera forward
-	if in_first_person && !free_looking:
+	if (in_first_person && !free_looking) || (!in_first_person && centering_camera):
+		if (centering_camera):
+			lerp_factor += delta * Config.lerpSpeed
+			camera_controller.rotation.y = lerp(camera_controller.rotation.y, 0.0, lerp_factor)
+			spring_arm_3d.rotation.z = lerp(spring_arm_3d.rotation.z, 0.0, lerp_factor)
+			if (lerp_factor >= 1.0):
+				centering_camera = false
 	# TODO: fix centering the camera to the original x position before freelooking, it only works once
-		#if originCameraX != spring_arm_3d.rotation.x && centeringCamera :
-			#centeringCamera = true
-			#spring_arm_3d.rotation.x = lerp(spring_arm_3d.rotation.x,originCameraX, delta * Config.lerpSpeed)
+		#if origin_camera_x != spring_arm_3d.rotation.x && centering_camera :
+			#centering_camera = true
+			#spring_arm_3d.rotation.x = lerp(spring_arm_3d.rotation.x,origin_camera_x, delta * Config.lerpSpeed)
 		#else:
-			#centeringCamera = false
-		camera_controller.rotation.y = lerp( camera_controller.rotation.y ,0.0, delta * Config.lerpSpeed)
-		spring_arm_3d.rotation.z = lerp( spring_arm_3d.rotation.z , 0.0, delta * Config.lerpSpeed)
+			#centering_camera = false
 
 func _input(event): 
 	if event is InputEventMouseMotion:
