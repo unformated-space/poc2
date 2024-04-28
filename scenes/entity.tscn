@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3675nehxlohi"]
+
+[ext_resource type="Texture2D" uid="uid://dm04ybjniiou2" path="res://assets/textures/kenney_prototype_textures/purple/texture_08.png" id="2_7qve6"]
+[ext_resource type="Script" path="res://scripts/motionController.gd" id="2_xnu84"]
+[ext_resource type="PackedScene" uid="uid://bx3445d12qv84" path="res://scenes/cameraController.tscn" id="3_xtlsu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85ue2"]
+albedo_texture = ExtResource("2_7qve6")
+
+[sub_resource type="BoxMesh" id="BoxMesh_nflqe"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_buoh8"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" type="RigidBody3D" parent="."]
+mass = 1.2
+script = ExtResource("2_xnu84")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+material_override = SubResource("StandardMaterial3D_85ue2")
+mesh = SubResource("BoxMesh_nflqe")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CylinderShape3D_buoh8")
+
+[node name="RayCast3D" type="RayCast3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, -2, 0)
+
+[node name="CameraController" parent="Player" node_paths=PackedStringArray("controller") instance=ExtResource("3_xtlsu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684302, -0.352048)
+controller = NodePath("..")

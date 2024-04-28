@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://cteyyy3sosvm4"]
+
+[ext_resource type="PackedScene" uid="uid://dh5lqy07aa8a7" path="res://assets/block tiles/block.tscn" id="1_4vp5w"]
+[ext_resource type="PackedScene" uid="uid://rpvd5cqe6jcu" path="res://assets/block tiles/control.tscn" id="2_lyvw3"]
+[ext_resource type="PackedScene" uid="uid://dlb6okrwn6srt" path="res://assets/block tiles/gyro.tscn" id="3_n4inv"]
+[ext_resource type="PackedScene" uid="uid://6w8wgjacv1ll" path="res://assets/block tiles/thruster.tscn" id="4_qlhv7"]
+
+[node name="blocks" type="Node3D"]
+
+[node name="Block" parent="." instance=ExtResource("1_4vp5w")]
+
+[node name="Control" parent="." instance=ExtResource("2_lyvw3")]
+
+[node name="Gyro" parent="." instance=ExtResource("3_n4inv")]
+
+[node name="Thruster" parent="." instance=ExtResource("4_qlhv7")]

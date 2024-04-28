@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh5lqy07aa8a7"]
+
+[ext_resource type="ArrayMesh" uid="uid://broto5kjl2s7a" path="res://assets/block tiles/block.obj" id="1_kyr0d"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_swrsr"]
+points = PackedVector3Array(0.1, 0.1, 0.1, 0.1, -0.1, 0.1, 0.1, 0.1, -0.1, -0.1, 0.1, 0.1, 0.1, -0.1, -0.1, -0.1, -0.1, 0.1, -0.1, 0.1, -0.1, -0.1, -0.1, -0.1)
+
+[node name="Block" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="Block" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.160476, -1.19209e-07, -0.112253)
+mesh = ExtResource("1_kyr0d")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.160476, -1.19209e-07, -0.112253)
+shape = SubResource("ConvexPolygonShape3D_swrsr")

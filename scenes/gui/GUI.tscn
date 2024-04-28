@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://dhewxo8l8t8jg"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -264.0
+offset_right = 6.0
+offset_bottom = -264.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_horizontal_guides_ = [-765.0]
+metadata/_edit_vertical_guides_ = [28.0]
+
+[node name="log" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0078125
+anchor_top = 0.578704
+anchor_right = 0.450521
+anchor_bottom = 0.848765
+grow_vertical = 0
+text = "
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="speed" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0277778
+anchor_top = -0.729938
+anchor_right = 0.131076
+anchor_bottom = -0.682099
+metadata/_edit_use_anchors_ = true
+
+[node name="jetpack" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0303819
+anchor_top = -0.692901
+anchor_right = 0.0303819
+anchor_bottom = -0.692901
+offset_left = 26.2708
+offset_top = 19.1868
+offset_right = 66.2708
+offset_bottom = 42.1868
+rotation = -0.00466949
+
+[node name="dampeners" type="Label" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = -410.0
+offset_right = 99.0
+offset_bottom = -387.0
+rotation = 0.0117755
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 2029.0
+offset_top = -479.0
+offset_right = 2279.0
+offset_bottom = -277.0
+text = "CONTROLS:
+WASD
+crouch = ctrl
+jump = space
+third person = V
+freelook = tab (first and third)
+jepack = x
+dampeners = z (while jetpack)
+interact = f"
