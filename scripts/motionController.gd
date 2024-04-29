@@ -41,7 +41,7 @@ func maintain_current_state():
 	# Por ejemplo, mantener la velocidad actual o aplicar una fuerza de gravedad si está en el aire
 	
 	if not is_on_floor() and not jetpack:
-		apply_central_force(Vector3(0, 1 * mass, 0))  # Asegurando que la gravedad sigue aplicándose
+		apply_central_force(Vector3(0, 1 * mass, 9.8))  # Asegurando que la gravedad sigue aplicándose
 
 
 func _process(delta):
@@ -54,7 +54,9 @@ func _process(delta):
 
 func _physics_process(delta):
 	rotate_y(camera_controller.cameraAngle)
+	#rotation.y += deg_to_rad(camera_controller.cameraAngle * 15)
 	camera_controller.cameraAngle = 0.0
+
 	if can_move():  # Comprobar si el jugador puede moverse
 		var direction = handle_movement_input(Vector3.ZERO, delta)
 		var speed = handle_speed_input()
@@ -80,6 +82,7 @@ func handle_movement_input(direction, delta):
 		if Input.is_action_pressed("crouch"):
 			direction += -transform.basis.y
 		rotate_x(camera_controller.cameraAngleZ)
+		camera_controller.cameraAngleZ = 0.0
 	return direction
 
 func handle_speed_input():
@@ -127,6 +130,3 @@ func apply_movement(direction, speed, delta):
 func align_to_gravity_direction(delta):
 	rotation.z = lerp( rotation.z ,0.0, delta * Config.lerpSpeed)
 	rotation.x = lerp( rotation.x ,0.0, delta * Config.lerpSpeed)
-
-
-

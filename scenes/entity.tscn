@@ -18,6 +18,10 @@ size = Vector3(1, 2, 1)
 mass = 1.2
 script = ExtResource("2_xnu84")
 
+[node name="CameraController" parent="Player" node_paths=PackedStringArray("controller") instance=ExtResource("3_xtlsu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684302, -0.352048)
+controller = NodePath("..")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 material_override = SubResource("StandardMaterial3D_85ue2")
 mesh = SubResource("BoxMesh_nflqe")
@@ -29,7 +33,3 @@ shape = SubResource("CylinderShape3D_buoh8")
 [node name="RayCast3D" type="RayCast3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, -2, 0)
-
-[node name="CameraController" parent="Player" node_paths=PackedStringArray("controller") instance=ExtResource("3_xtlsu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684302, -0.352048)
-controller = NodePath("..")
