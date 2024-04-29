@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bx3445d12qv84"]
+[gd_scene load_steps=4 format=3 uid="uid://bx3445d12qv84"]
 
 [ext_resource type="Script" path="res://scripts/camara.gd" id="1_wksn1"]
+[ext_resource type="Script" path="res://scripts/interactor.gd" id="2_0an43"]
+[ext_resource type="Texture2D" uid="uid://cn8dt7534crdk" path="res://assets/crosshair.png" id="2_ptyax"]
 
 [node name="CameraController" type="Node3D"]
 script = ExtResource("1_wksn1")
@@ -12,6 +14,28 @@ spring_length = 0.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 
-[node name="interactionCast" type="RayCast3D" parent="SpringArm3D/Camera3D"]
+[node name="interact_raycast" type="RayCast3D" parent="SpringArm3D/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-target_position = Vector3(0, -1.5, 0)
+target_position = Vector3(0, -2, 0)
+script = ExtResource("2_0an43")
+
+[node name="interact_label" type="Label" parent="SpringArm3D/Camera3D/interact_raycast"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -3.0
+offset_right = 94.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[E] Pickup"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="crosshair" type="Sprite2D" parent="SpringArm3D/Camera3D/interact_raycast/interact_label"]
+position = Vector2(93, 4)
+scale = Vector2(0.282, 0.282)
+texture = ExtResource("2_ptyax")

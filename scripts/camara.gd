@@ -57,7 +57,6 @@ func _process (delta):
 	if Input.is_action_pressed("freeLook"):
 		free_looking = true
 
-	print (origin_camera_x)
 	#when stop free_looking center camera forward
 	if (in_first_person && not free_looking) || (not in_first_person && centering_camera):
 		if (centering_camera):
