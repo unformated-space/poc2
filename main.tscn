@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cyd875q6sea7d" path="res://assets/textures/kenney_prototype_textures/dark/texture_01.png" id="2_br0sc"]
 [ext_resource type="Texture2D" uid="uid://cc2qs5we0kmid" path="res://assets/textures/kenney_prototype_textures/purple/texture_01.png" id="4_isu3i"]
 [ext_resource type="PackedScene" uid="uid://dhewxo8l8t8jg" path="res://scenes/gui/GUI.tscn" id="5_vrbje"]
-[ext_resource type="MeshLibrary" uid="uid://41clbmkrp0v7" path="res://assets/block tiles/blocks.tres" id="6_63gxh"]
+[ext_resource type="MeshLibrary" uid="uid://d22c0wlbml8cs" path="res://assets/block tiles/blocks.tres" id="6_63gxh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_75neh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
