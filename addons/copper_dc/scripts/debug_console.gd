@@ -91,7 +91,7 @@ func _input(event):
 		await get_tree().create_timer(0.02).timeout
 		commandField.grab_focus()
 	# Close debug
-	elif visible and event.is_action_pressed("ui_cancel"):
+	elif visible and event.is_action_pressed("open_debug"):
 		hide_console(showStats, showMiniLog)
 	# Enter command
 	elif visible and event.is_action_pressed("ui_text_submit"):

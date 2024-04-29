@@ -1,5 +1,5 @@
 extends Interactable
-@onready var mesh_instance_3d = $MeshInstance3D
+@onready var mesh_instance_3d = $MeshInstance
 
 var switched := false
 var last := ""
