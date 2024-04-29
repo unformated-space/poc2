@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cteyyy3sosvm4"]
+[gd_scene load_steps=6 format=3 uid="uid://cteyyy3sosvm4"]
 
 [ext_resource type="PackedScene" uid="uid://duri7mphvsyes" path="res://assets/block tiles/thruster - thruster.gltf" id="1_vrcww"]
 [ext_resource type="PackedScene" uid="uid://cdl51fnw0g4ip" path="res://assets/block tiles/basicBlock - basic block.gltf" id="2_g02d8"]
 [ext_resource type="PackedScene" uid="uid://d0tvtjnykpt0i" path="res://assets/block tiles/bigBlockSlope - bigSlope.gltf" id="3_6ptpo"]
+[ext_resource type="PackedScene" uid="uid://yxf2t32i5nej" path="res://assets/block tiles/untitled.glb" id="4_ja7qp"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ptwc3"]
 points = PackedVector3Array(-0.1, -0.1, -0.1, 0.0999954, 0.1, 0.1, 0.0999954, 0.1, -0.1, 0.0999954, -0.1, 0.1, -0.1, 0.1, 0.1, 0.0999954, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1, 0.1)
@@ -19,5 +20,8 @@ shape = SubResource("ConvexPolygonShape3D_ptwc3")
 
 [node name="Root3" parent="." instance=ExtResource("3_6ptpo")]
 
+[node name="untitled" parent="." instance=ExtResource("4_ja7qp")]
+
 [editable path="Root"]
 [editable path="Root2"]
+[editable path="untitled"]

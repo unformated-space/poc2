@@ -53,9 +53,9 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	rotate_y(camera_controller.cameraAngle)
-	#rotation.y += deg_to_rad(camera_controller.cameraAngle * 15)
-	camera_controller.cameraAngle = 0.0
+	rotate_y(camera_controller.camera_angle)
+	#rotation.y += deg_to_rad(camera_controller.camera_angle * 15)
+	camera_controller.camera_angle = 0.0
 
 	if can_move():  # Comprobar si el jugador puede moverse
 		var direction = handle_movement_input(Vector3.ZERO, delta)
@@ -81,8 +81,8 @@ func handle_movement_input(direction, delta):
 			direction += transform.basis.y
 		if Input.is_action_pressed("crouch"):
 			direction += -transform.basis.y
-		rotate_x(camera_controller.cameraAngleZ)
-		camera_controller.cameraAngleZ = 0.0
+		rotate_x(camera_controller.camera_angle_z)
+		camera_controller.camera_angle_z = 0.0
 	return direction
 
 func handle_speed_input():
