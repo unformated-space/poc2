@@ -46,7 +46,8 @@ func _process (delta):
 	if Input.is_action_just_released("switchView"):		
 		in_first_person = not in_first_person
 	if Input.is_action_just_pressed("freeLook"):
-		if (switch_view_delta_key > 0.0 && switch_view_delta_key < 0.25):
+		if (switch_view_delta_key > 0.0 && switch_view_delta_key < 0.25) || in_first_person	:
+			origin_camera_x = spring_arm_3d.rotation.x
 			switch_view_delta_key = 0.0
 			lerp_factor = 0.0
 			centering_camera = true
@@ -54,15 +55,14 @@ func _process (delta):
 			switch_view_delta_key = delta
 		free_looking = false
 	if Input.is_action_pressed("freeLook"):
-		if not centering_camera:
-			origin_camera_x = spring_arm_3d.rotation.x
-			# centering_camera = true
 		free_looking = true
 
+	print (origin_camera_x)
 	#when stop free_looking center camera forward
 	if (in_first_person && not free_looking) || (not in_first_person && centering_camera):
 		if (centering_camera):
 			lerp_factor += delta * Config.lerpSpeed
+			#camera_controller.rotation.x = lerp(camera_controller.rotation.x, origin_camera_x, lerp_factor*1.5)
 			camera_controller.rotation.y = lerp(camera_controller.rotation.y, 0.0, lerp_factor)
 			spring_arm_3d.rotation.z = lerp(spring_arm_3d.rotation.z, 0.0, lerp_factor)
 			if (lerp_factor >= 1.0):
@@ -78,7 +78,6 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		if free_looking:
 			camera_controller.rotate_y (-deg_to_rad(event.relative.x * Config.mouseSens))
-
 			spring_arm_3d.rotate_x (-deg_to_rad(event.relative.y * (Config.mouseSens*0.5)))
 			spring_arm_3d.rotation.x = clamp (spring_arm_3d.rotation.x, deg_to_rad(-45),deg_to_rad(80))
 			if in_first_person:
