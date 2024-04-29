@@ -44,7 +44,6 @@ func _process (delta):
 
 	#switch view
 	if Input.is_action_just_released("switchView"):		
-		print ("switch")
 		in_first_person = not in_first_person
 	if Input.is_action_just_pressed("freeLook"):
 		if (switch_view_delta_key > 0.0 && switch_view_delta_key < 0.25):

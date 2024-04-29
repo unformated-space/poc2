@@ -49,7 +49,7 @@ func _process(delta):
 	speedLabel.text = "Speed: " + str(speed_m_s) + " m/s"
 	dampenerLabel.text = "Dampeners " + str(dampeners)
 	jetpackLabel.text = "Jetpack " + str(jetpack)
-	text.append_text(str(is_on_floor())+"\n")
+	DebugConsole.log(str(is_on_floor())+"\n")
 
 
 func _physics_process(delta):
