@@ -7,3 +7,7 @@ extends Node3D
 
 func _interact():
 	print ("default interaction")
+
+
+func report():
+	DebugConsole.log("resistance is futile")
