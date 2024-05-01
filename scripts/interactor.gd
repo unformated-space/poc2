@@ -12,7 +12,7 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _process(delta):
+func _process(_delta):
 	var object = get_collider()
 	interact_label.text = ""
 	if object and object is Interactable:

@@ -5,10 +5,9 @@ class_name CameraManager
 
 @onready var spring_arm_3d: SpringArm3D = $SpringArm3D
 @onready var camera_3d: Camera3D = $SpringArm3D/Camera3D
-@onready var interaction_cast = $SpringArm3D/Camera3D/interactionCast
 @onready var camera_controller = $"."
 
-@export var camera_angle: float = 0.0
+@export var camera_angle_y: float = 0.0
 @export var camera_angle_z: float = 0.0
 @export var free_look_tilt: float = 8.0
 
@@ -83,7 +82,7 @@ func _input(event):
 				camera_controller.rotation.y = clamp (camera_controller.rotation.y, deg_to_rad(-120),deg_to_rad(120))
 				spring_arm_3d.rotation.z = -deg_to_rad(camera_controller.rotation.y * free_look_tilt)
 		else:
-			camera_angle = (-deg_to_rad(event.relative.x * (Config.mouseSens*0.5)))
+			camera_angle_y = (-deg_to_rad(event.relative.x * (Config.mouseSens*0.5)))
 			camera_angle_z = (-deg_to_rad(event.relative.y * (Config.mouseSens*0.5)))
 		#if in_first_person || (not in_first_person&&free_looking):
 		if in_first_person || (not in_first_person&&free_looking):
