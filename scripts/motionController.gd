@@ -26,7 +26,7 @@ var jumping := false
 @onready var jetpackLabel = get_node("../../GUI/GridContainer/jetpack")
 
 func _ready():
-	text.scroll_following = true
+	#text.scroll_following = true
 	lock_rotation = true
 
 func is_on_floor() -> bool:
@@ -46,16 +46,16 @@ func maintain_current_state():
 
 func _process(delta):
 	var speed_m_s = linear_velocity.length()  # This is the speed in meters per second
-	speedLabel.text = "Speed: " + str(speed_m_s) + " m/s"
-	dampenerLabel.text = "Dampeners " + str(dampeners)
-	jetpackLabel.text = "Jetpack " + str(jetpack)
+	#speedLabel.text = "Speed: " + str(speed_m_s) + " m/s"
+	#dampenerLabel.text = "Dampeners " + str(dampeners)
+	#jetpackLabel.text = "Jetpack " + str(jetpack)
 	#DebugConsole.log(str(is_on_floor())+"\n")
 
 
 func _physics_process(delta):
-	rotate_y(camera_controller.camera_angle)
+	rotate_y(camera_controller.camera_angle_y)
 	#rotation.y += deg_to_rad(camera_controller.camera_angle * 15)
-	camera_controller.camera_angle = 0.0
+	camera_controller.camera_angle_y = 0.0
 
 	if can_move():  # Comprobar si el jugador puede moverse
 		var direction = handle_movement_input(Vector3.ZERO, delta)
