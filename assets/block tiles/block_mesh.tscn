@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctbi277jj8xrs"]
+[gd_scene load_steps=5 format=3 uid="uid://bn4qymx2cd7a6"]
 
-[ext_resource type="PackedScene" uid="uid://budtrg555tmre" path="res://assets/block tiles/block_default.tscn" id="1_813gc"]
-[ext_resource type="PackedScene" uid="uid://dqpgnkiaca230" path="res://assets/block tiles/block_longx4.tscn" id="2_tk7bv"]
+[ext_resource type="PackedScene" uid="uid://cqdqvntvn3al8" path="res://assets/block tiles/glb/block_default.gltf" id="1_tnli8"]
+[ext_resource type="PackedScene" uid="uid://5rh73rc4b6h4" path="res://assets/block tiles/glb/block_longx4.gltf" id="2_3j054"]
+[ext_resource type="PackedScene" uid="uid://dagckrjys0o12" path="res://assets/block tiles/glb/block_longx3blue.gltf" id="3_cxt4v"]
+[ext_resource type="PackedScene" uid="uid://450xry7ry7kd" path="res://assets/block tiles/glb/blockx4.gltf" id="4_fnvjv"]
 
-[node name="blocksMesh" type="Node3D"]
+[node name="blockMesh" type="Node3D"]
 
-[node name="BlockDefault" parent="." instance=ExtResource("1_813gc")]
+[node name="default" parent="." instance=ExtResource("1_tnli8")]
 
-[node name="BlockLong4" parent="." instance=ExtResource("2_tk7bv")]
+[node name="Node3D" parent="." instance=ExtResource("2_3j054")]
+visible = false
+
+[node name="blockx3" parent="." instance=ExtResource("3_cxt4v")]
+
+[node name="blockx4" parent="." instance=ExtResource("4_fnvjv")]
+
+[editable path="default"]
+[editable path="Node3D"]

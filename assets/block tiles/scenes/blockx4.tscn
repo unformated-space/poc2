@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://glmsoloedq77"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sedr1"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g2cuv"]
+uv2_padding = 0.0
+size = Vector3(0.2, 0.8, 0.2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kmfg8"]
+points = PackedVector3Array(0.1, 0.370567, 0.1, -0.1, -0.382521, -0.1, -0.0968254, -0.370567, 0.1, -0.1, 0.382521, -0.1, 0.1, -0.370567, -0.0968254, -0.0968254, 0.370567, 0.1, 0.1, 0.370567, -0.0968254, 0.1, -0.370567, 0.1)
+
+[node name="blockx4" type="Node3D"]
+
+[node name="blockx4" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_sedr1")
+mesh = SubResource("BoxMesh_g2cuv")
+skeleton = NodePath("blockx4")
+
+[node name="blockx4" type="StaticBody3D" parent="blockx4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="blockx4/blockx4"]
+shape = SubResource("ConvexPolygonShape3D_kmfg8")

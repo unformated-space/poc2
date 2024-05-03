@@ -69,14 +69,7 @@ func apply_rotation(quat):
 	
 func handle_movement_input(direction, delta):
 	var rotation_speed = 0.05
-	#rotate_y(camera_controller.camera_angle_x)
-	#rotation.y += deg_to_rad(camera_controller.camera_angle * 15)
-	#camera_controller.camera_angle_x = 0.0
-	#var dy= -camera_controller.camera_angle_z
-	#var dx = 0.0
-	#var dq = Quaternion(Vector3(0, 1, 0), dy) * Quaternion(Vector3(1, 0, 0), dy)
-	apply_rotation(Quaternion(Vector3(0, 1, 0), camera_controller.camera_angle_y))
-	camera_controller.camera_angle_y = 0.0
+	var quatz := Quaternion.IDENTITY
 	if Input.is_action_pressed("move_fwd"):
 		direction += -transform.basis.z
 	if Input.is_action_pressed("move_back"):
@@ -85,20 +78,24 @@ func handle_movement_input(direction, delta):
 		direction += -transform.basis.x
 	if Input.is_action_pressed("move_right"):
 		direction += transform.basis.x
+
 	if jetpack:
-		apply_rotation(Quaternion(Vector3(1, 0, 0), camera_controller.camera_angle_z))
-		camera_controller.camera_angle_z = 0.0
-		if Input.is_action_pressed("rotate_left"):
-			apply_rotation(Quaternion(Vector3(0, 0, 1), rotation_speed))
-		elif Input.is_action_pressed("rotate_right"):
-			apply_rotation(Quaternion(Vector3(0, 0, 1), -rotation_speed))
 		if Input.is_action_pressed("jump"):
 			direction += transform.basis.y
 		if Input.is_action_pressed("crouch"):
 			direction += -transform.basis.y
-		#rotate_x(camera_controller.camera_angle_x)
-		#camera_controller.camera_angle_z = 0.0
-	#apply_rotation(dq)
+			
+		quatz *= Quaternion(transform.basis.x,camera_controller.camera_angle_z)
+		if Input.is_action_pressed("rotate_left"):
+			quatz *= Quaternion(transform.basis.z, rotation_speed)  # Rotate around local z-axis
+		elif Input.is_action_pressed("rotate_right"):
+			quatz *= Quaternion(transform.basis.z, -rotation_speed)
+
+
+		apply_rotation(quatz)
+	apply_rotation(Quaternion(transform.basis.y, camera_controller.camera_angle_y)*quatz)
+	camera_controller.camera_angle_y = 0.0
+	camera_controller.camera_angle_z = 0.0
 	return direction
 
 func handle_speed_input():
@@ -134,11 +131,6 @@ func apply_movement(direction, speed, delta):
 	if current_speed > speed:
 		current_velocity = current_velocity.normalized() * speed
 		linear_velocity = current_velocity
-	#if jetpack:
-		#if Input.is_action_pressed("rotate_left"):
-			#rotate_z(deg_to_rad(-1))  # Rotar a una velocidad fija por frame
-		#if Input.is_action_pressed("rotate_right"):
-			#rotate_z(deg_to_rad(1))  # Rotar a una velocidad fija por frame
 
 
 

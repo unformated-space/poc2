@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0o5j210eqlu7"
-path.s3tc="res://.godot/imported/texture_03.png-7b1068007c6869b8ad543812b2b23ef2.s3tc.ctex"
+uid="uid://brodrvk7wijgr"
+path.s3tc="res://.godot/imported/_albedo000.png-70152ecf095f52d444c6c5daf56c66a7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/kenney_prototype_textures/red/texture_03.png"
-dest_files=["res://.godot/imported/texture_03.png-7b1068007c6869b8ad543812b2b23ef2.s3tc.ctex"]
+source_file="res://assets/block tiles/glb/textures/_albedo000.png"
+dest_files=["res://.godot/imported/_albedo000.png-70152ecf095f52d444c6c5daf56c66a7.s3tc.ctex"]
 
 [params]
 
