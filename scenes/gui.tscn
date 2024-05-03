@@ -10,11 +10,6 @@ grow_vertical = 2
 metadata/_edit_vertical_guides_ = [0.0]
 metadata/_edit_horizontal_guides_ = [1080.0]
 
-[node name="Control" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -91,4 +86,27 @@ size_flags_horizontal = 3
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Send
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.813
+anchor_top = 0.027
+anchor_right = 0.99
+anchor_bottom = 0.272
+offset_left = 0.039917
+offset_top = -0.16
+offset_right = 0.199829
+offset_bottom = 0.23999
+text = "Controls:
+WASD+mouse
+shift: sprint
+x: toggle jetpack
+space + ctrl: up and down
+z: toggle dampeners jetpack
+CammeraControl
+v: toggle camera
+tab mantenido: freelook
+double tab center cammera only third person
 "
