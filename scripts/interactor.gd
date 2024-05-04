@@ -2,7 +2,6 @@ extends RayCast3D
 class_name Interactor
 
 # TODO: fix this paths of hell (../../../Player)
-@onready var text = get_node("../../../../../../GUI/log")
 @onready var ignore_this := get_node("../../../../../Player")
 @onready var interact_label = $interact_label
 

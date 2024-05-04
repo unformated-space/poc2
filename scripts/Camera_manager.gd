@@ -1,7 +1,5 @@
 extends Node3D
-class_name CameraManager
-
-@export var controller: RigidBody3D
+class_name Camera_manager
 
 @onready var spring_arm_3d: SpringArm3D = $SpringArm3D
 @onready var camera_3d: Camera3D = $SpringArm3D/Camera3D
