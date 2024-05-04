@@ -111,7 +111,3 @@ open_debug={
 [layer_names]
 
 3d_physics/layer_1="player"
-
-[physics]
-
-3d/physics_engine="JoltPhysics3D"

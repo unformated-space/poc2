@@ -20,10 +20,6 @@ var dampeners := true
 var jumping := false
 @onready var ray_cast_3d = $RayCast3D
 
-@onready var text = get_node("../../GUI/log")
-@onready var speedLabel = get_node("../../GUI/GridContainer/speed")
-@onready var dampenerLabel = get_node("../../GUI/GridContainer/dampeners")
-@onready var jetpackLabel = get_node("../../GUI/GridContainer/jetpack")
 
 func _ready():
 	#text.scroll_following = true

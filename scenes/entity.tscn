@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3675nehxlohi"]
+[gd_scene load_steps=9 format=3 uid="uid://d3675nehxlohi"]
 
+[ext_resource type="Script" path="res://scenes/player_stuff.gd" id="1_2cjka"]
 [ext_resource type="Texture2D" uid="uid://dm04ybjniiou2" path="res://assets/textures/kenney_prototype_textures/purple/texture_08.png" id="2_7qve6"]
 [ext_resource type="Script" path="res://scripts/motionController.gd" id="2_xnu84"]
 [ext_resource type="PackedScene" uid="uid://bx3445d12qv84" path="res://scenes/cameraController.tscn" id="3_xtlsu"]
@@ -15,6 +16,7 @@ size = Vector3(1, 2, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iatgi"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_2cjka")
 
 [node name="Player" type="RigidBody3D" parent="."]
 mass = 1.2

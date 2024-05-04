@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://70hdnpxrk8mr"]
+[gd_scene load_steps=3 format=3 uid="uid://70hdnpxrk8mr"]
+
+[ext_resource type="Script" path="res://scripts/uiControl.gd" id="1_77yke"]
+[ext_resource type="Texture2D" uid="uid://c578soaaf0tql" path="res://icon.svg" id="1_rh635"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,10 +10,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_77yke")
 metadata/_edit_vertical_guides_ = [0.0]
 metadata/_edit_horizontal_guides_ = [1080.0]
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="chatWindow" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.709
@@ -22,23 +26,23 @@ offset_bottom = 1.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="chatWindow"]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="chatWindow/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="chatWindow/VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="chatLog" type="RichTextLabel" parent="chatWindow/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 17
 text = "Create Node
@@ -54,36 +58,17 @@ Resize Control \"RichTextLabel\" to (578, 279)"
 scroll_following = true
 metadata/_edit_use_anchors_ = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
-visible = false
-clip_contents = false
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 0
-text = "Create Node
-Resize Control \"RichTextLabel\" to (356, 217)
-Move CanvasItem \"Control\" to (30, 52)
-Scene Undo: Move CanvasItem \"Control\" to (30, 52)
-Create Node
-Resize Control \"RichTextLabel\" to (356, 217)
-Move CanvasItem \"Control\" to (30, 52)
-Scene Undo: Move CanvasItem \"Control\" to (30, 52)
-Move CanvasItem \"RichTextLabel\" to (49, 816)
-Resize Control \"RichTextLabel\" to (578, 279)"
-fit_content = true
-context_menu_enabled = true
-metadata/_edit_use_anchors_ = true
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="chatWindow/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="chatWindow/VBoxContainer"]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="chatInput" type="LineEdit" parent="chatWindow/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="chatSend" type="Button" parent="chatWindow/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Send
 "
@@ -110,3 +95,16 @@ v: toggle camera
 tab mantenido: freelook
 double tab center cammera only third person
 "
+
+[node name="activeItem" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.878
+anchor_top = 0.762
+anchor_right = 0.94
+anchor_bottom = 0.873
+offset_left = 0.23999
+offset_top = 0.039978
+offset_right = -0.800049
+offset_bottom = 0.159973
+texture = ExtResource("1_rh635")
