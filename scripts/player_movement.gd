@@ -76,12 +76,12 @@ func maintain_current_state():
 
 func handle_speed():
 	if jetpack:
-		return 20
+		return 40
 	else:
 		if Input.is_action_pressed("sprint-boost"):
-			return sprint_speed
+			return 30
 		elif Input.is_action_pressed("crouch"):
-			return crouching_speed
+			return 15
 		else:
 			return 20
 
