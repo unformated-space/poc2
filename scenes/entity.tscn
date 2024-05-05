@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d3675nehxlohi"]
 
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_bqh38"]
 [ext_resource type="Texture2D" uid="uid://dm04ybjniiou2" path="res://assets/textures/kenney_prototype_textures/purple/texture_08.png" id="2_7qve6"]
-[ext_resource type="Script" path="res://scripts/player_movement_funcs.gd" id="2_xb5kk"]
 [ext_resource type="PackedScene" uid="uid://bx3445d12qv84" path="res://scenes/cameraController.tscn" id="3_xtlsu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85ue2"]
@@ -14,8 +14,9 @@ albedo_texture = ExtResource("2_7qve6")
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" type="RigidBody3D" parent="." node_paths=PackedStringArray("camera_controller")]
-mass = 1.2
-script = ExtResource("2_xb5kk")
+mass = 75.0
+linear_damp = 37.647
+script = ExtResource("1_bqh38")
 camera_controller = NodePath("CameraController")
 
 [node name="CameraController" parent="Player" instance=ExtResource("3_xtlsu")]

@@ -41,3 +41,4 @@ scale = Vector2(0.282, 0.282)
 texture = ExtResource("2_ptyax")
 
 [node name="VoxelViewer" type="VoxelViewer" parent="SpringArm3D"]
+view_distance = 50

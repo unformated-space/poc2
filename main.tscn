@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://ibksedtyajll" path="res://assets/textures/kenney_prototype_textures/orange/texture_01.png" id="7_g6mth"]
 [ext_resource type="Texture2D" uid="uid://dc8bkaad78vr1" path="res://assets/textures/kenney_prototype_textures/green/texture_04.png" id="7_udk4l"]
 [ext_resource type="PackedScene" uid="uid://budtrg555tmre" path="res://assets/block tiles/scenes/block_default.tscn" id="10_njqxx"]
-[ext_resource type="Curve" uid="uid://cab5myl8duqct" path="res://assets/voxel_terrain/terrain_curve.tres" id="11_ewk05"]
 [ext_resource type="PackedScene" uid="uid://dqpgnkiaca230" path="res://assets/block tiles/scenes/block_longx3blue.tscn" id="11_h3x0m"]
+[ext_resource type="Curve" uid="uid://cab5myl8duqct" path="res://assets/voxel_terrain/terrain_curve.tres" id="11_r2115"]
 [ext_resource type="Material" uid="uid://r43l2vdf4eto" path="res://assets/voxel_terrain/transvoxel_terrain_material.tres" id="12_3s1wn"]
 [ext_resource type="PackedScene" uid="uid://70hdnpxrk8mr" path="res://scenes/gui.tscn" id="12_yrqup"]
 
@@ -45,13 +45,14 @@ albedo_texture = ExtResource("7_g6mth")
 uv1_triplanar = true
 uv2_triplanar = true
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_3myi1"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5663t"]
 
-[sub_resource type="VoxelGeneratorNoise2D" id="VoxelGeneratorNoise2D_2rdbr"]
-noise = SubResource("FastNoiseLite_3myi1")
-curve = ExtResource("11_ewk05")
+[sub_resource type="VoxelGeneratorNoise2D" id="VoxelGeneratorNoise2D_cfags"]
+noise = SubResource("FastNoiseLite_5663t")
+curve = ExtResource("11_r2115")
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_jen5e"]
+mesh_optimization_enabled = true
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_y4ums")
@@ -94,7 +95,7 @@ cell_size = Vector3(0.2, 0.2, 0.2)
 metadata/_editor_floor_ = Vector3(0, 5, 0)
 
 [node name="Entity" parent="." instance=ExtResource("1_dv0ft")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.71239, -9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97, 31.288, 15)
 
 [node name="RandomStuffTest" type="Node3D" parent="."]
 
@@ -144,7 +145,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48591, 0.720288, 0.453797)
 
 [node name="GUI" parent="." instance=ExtResource("12_yrqup")]
 
+[node name="speed" type="Label" parent="GUI"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 81.0
+offset_right = 199.0
+offset_bottom = 104.0
+text = "ss"
+
 [node name="VoxelLodTerrain" type="VoxelLodTerrain" parent="."]
-generator = SubResource("VoxelGeneratorNoise2D_2rdbr")
+generator = SubResource("VoxelGeneratorNoise2D_cfags")
 mesher = SubResource("VoxelMesherTransvoxel_jen5e")
+lod_count = 9
+lod_distance = 16.0
 material = ExtResource("12_3s1wn")
+run_stream_in_editor = false
+threaded_update_enabled = true
+streaming_system = 1
