@@ -58,44 +58,27 @@ func handle_movement(direction, player_jetpacking: bool = false):
 
 
 
-#func apply_movement(direction, speed, max_speed = global_max_speed, acceleration : float = 1):
-	## Normalize the direction.
-	#if direction.length() > 0:
-		#direction = direction.normalized()
-	#else:
-		#return  # Exit if there's no direction to move in.
-#
-	#var delta = get_physics_process_delta_time()
-	#var velocity_change = direction * speed * acceleration * delta
-#
-	## Clamp the velocity change to prevent excessive adjustments
-	#if velocity_change.length() > max_speed:
-		#velocity_change = velocity_change.normalized() * max_speed
-#
-	#var new_velocity = linear_velocity + velocity_change
-#
-	## Ensure the new velocity does not exceed the maximum speed
-	#if new_velocity.length() > max_speed:
-		#new_velocity = new_velocity.normalized() * max_speed
-#
-	## Calculate the impulse necessary to achieve the new velocity
-	#var impulse = (new_velocity - linear_velocity) * mass / delta
-#
-	## Clamp the impulse to avoid applying extreme forces
-	#var max_impulse = 500  # Define a reasonable maximum impulse based on your game's scale
-	#if impulse.length() > max_impulse:
-		#impulse = impulse.normalized() * max_impulse
+func apply_movement(direction, speed):
+	if direction.length() > 0:
+		direction = direction.normalized() * speed
+	apply_central_force(direction * power)
+
+	var current_velocity = linear_velocity
+	var current_speed = current_velocity.length()
+	if current_speed > speed:
+		current_velocity = current_velocity.normalized() * speed
+		linear_velocity = current_velocity
 #
 	#apply_central_impulse(impulse)
-func apply_movement(direction, speed):
-	direction = direction.normalized()
-	var velocity_change = direction * speed
-	apply_central_impulse(velocity_change * mass)
-	## Debug output to help track values and behavior
-	#print("Direction: ", direction, " Speed: ", speed)
-	#print("Delta: ", delta, " Acceleration: ", acceleration)
-	#print("Velocity Change: ", velocity_change, " New Velocity: ", new_velocity)
-	#print("Impulse: ", impulse, " Linear Velocity: ", linear_velocity)
+#func apply_movement(direction, speed):
+	#direction = direction.normalized()
+	#var velocity_change = direction * speed
+	#apply_central_impulse(velocity_change * mass)
+	### Debug output to help track values and behavior
+	##print("Direction: ", direction, " Speed: ", speed)
+	##print("Delta: ", delta, " Acceleration: ", acceleration)
+	##print("Velocity Change: ", velocity_change, " New Velocity: ", new_velocity)
+	##print("Impulse: ", impulse, " Linear Velocity: ", linear_velocity)
 
 
 func dampenersContrls():

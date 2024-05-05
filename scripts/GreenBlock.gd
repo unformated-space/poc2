@@ -17,7 +17,7 @@ func random_color():
 	return Color(r, g, b, 1)
 
 
-func _interact():
+func _interact(_positionwww):
 	print("saraseado")
 	print(mesh_instance_3d.get_active_material(0))
 	var material = StandardMaterial3D.new()

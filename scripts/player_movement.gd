@@ -53,7 +53,7 @@ func _physics_process(delta):
 				velocity.y += gravity * delta
 			else:
 				velocity.y = max(velocity.y, 0) 
-			apply_movement(direction, speedww)
+			apply_movement(direction, speed)
 	var ground_data = detect_ground()
 	if ground_data["is_on_ground"]:
 		handle_slopes(physics_state, max_slope_angle_degrees, ground_data)
@@ -83,7 +83,7 @@ func handle_speed():
 		elif Input.is_action_pressed("crouch"):
 			return crouching_speed
 		else:
-			return normal_speed
+			return 20
 
 func handle_slopes(state, max_slope_angle_degrees: float, ground_data):
 	var max_slope_angle_radians = deg_to_rad(max_slope_angle_degrees)

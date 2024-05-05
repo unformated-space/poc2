@@ -19,6 +19,6 @@ func _process(_delta):
 			return
 		interact_label.text = "[F] " + object.interact_prompt
 		if Input.is_action_just_pressed("interact"):
-			object._interact()
+			object._interact(get_collision_point())
 	
 
