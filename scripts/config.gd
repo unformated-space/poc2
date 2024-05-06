@@ -10,3 +10,10 @@ var interact_raycast = "/root/world/Entity/Player/CameraController/SpringArm3D/C
 var interact_label = "/root/world/Entity/Player/CameraController/SpringArm3D/Camera3D/interact_raycast/interact_label"
 var active_item_ui = "/root/world/GUI/activeItem"
 var menu_open
+
+
+func debugger(args):
+	var result = ""
+	for arg in args:
+		result += " "+str(arg)
+	DebugConsole.log(result)

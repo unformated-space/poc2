@@ -1,16 +1,24 @@
 extends Interactable
 
-var sarlanga = ["una", "dos"]
+var country_capitals = {
+	"Argentina": "Buenos Aires",
+	"Australia": "Canberra",
+	"Brasil": "Brasilia",
+	"China": "Beijing",
+	"Ecuador": "Quito",
+	"España": "Madrid",
+	"Estados Unidos": "Washington D.C.",
+	"Francia": "París",
+	"Japón": "Tokio",
+	"México": "Ciudad de México",
+	"Reino Unido": "Londres",
+	"Rusia": "Moscú",
+	"Suecia": "Estocolmo"
+}
 func _interact(_position):
 	report()
-	var menu = show_menu(sarlanga)
-	menu.connect("id_pressed", _onPress)
-
-
-
-func _onPress(id_pressed):
-	Config.menu_open=false
-	DebugConsole.log(id_pressed)
+	var selected = show_menu(country_capitals)
+	DebugConsole.log (selected)
 
 func _input(event):
 	if event is InputEventKey:
