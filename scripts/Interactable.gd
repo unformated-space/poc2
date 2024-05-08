@@ -8,6 +8,8 @@ var move_direction := ""
 var menu_actual = 0
 var menu : PopupMenu
 @export var interact_prompt: String = ""
+@export var interact_left_click_prompt: String = ""
+@export var interact_right_click_prompt: String = ""
 @export var is_interactable: bool = true
 
 func _interact(_position):
