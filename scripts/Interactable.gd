@@ -12,6 +12,12 @@ var menu : PopupMenu
 
 func _interact(_position):
 	DebugConsole.log(_position)
+
+func _unfocus():
+	pass
+
+func _focus(_position):
+	pass
 	
 func _interact_left(_position, object):
 	DebugConsole.log(_position)

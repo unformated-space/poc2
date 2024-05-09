@@ -3,7 +3,6 @@ extends Interactable
 
 var switched := false
 var last := ""
-
 # Crea un nuevo material StandardMaterial3D.
  # Color rojo
 
@@ -16,8 +15,16 @@ func random_color():
 	# Crea y retorna un nuevo color con opacidad completa (1 para el componente alpha)
 	return Color(r, g, b, 1)
 
+func _unfocus():
+	mesh_instance_3d.set_material_overlay(null)
 
-func _interact(_positionwww):
+func _focus(_position):
+	var material = ShaderMaterial.new()
+	var shader = load("res://assets/shaders/outliner.gdshader")
+	material.shader = shader
+	mesh_instance_3d.set_material_overlay(material)
+
+func _interact(_position):
 	print("saraseado")
 	print(mesh_instance_3d.get_active_material(0))
 	var material = StandardMaterial3D.new()

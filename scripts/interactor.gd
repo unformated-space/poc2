@@ -5,6 +5,7 @@ class_name Interactor
 @onready var ignore_this := get_node("../../../../../Player")
 @onready var interact_label = $interact_label
 
+var collided_object
 
 func _ready():
 	add_exception(ignore_this)
@@ -14,10 +15,16 @@ func _ready():
 func _process(_delta):
 	var object = get_collider()
 	interact_label.text = ""
+	if collided_object != object and collided_object != null:
+		collided_object._unfocus()
+		collided_object = null
+
 	if object:
 		if object and object is Interactable:
 			if object.is_interactable == false:
 				return
+			object._focus(get_collision_point())
+			collided_object = object
 			if object.interact_prompt != "":
 				interact_label.text = "[F] " + object.interact_prompt
 			else:
