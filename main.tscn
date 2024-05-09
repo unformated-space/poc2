@@ -1,19 +1,18 @@
 [gd_scene load_steps=28 format=3 uid="uid://bk0hptkeov7eq"]
 
 [ext_resource type="PackedScene" uid="uid://d3675nehxlohi" path="res://scenes/entity.tscn" id="1_dv0ft"]
+[ext_resource type="Texture2D" uid="uid://cgfitu57oeqa7" path="res://assets/kloppenheim_06_puresky_4k.hdr" id="3_aayaa"]
+[ext_resource type="Script" path="res://scripts/testwiteslab.gd" id="3_rpoat"]
 [ext_resource type="Texture2D" uid="uid://cc2qs5we0kmid" path="res://assets/textures/kenney_prototype_textures/purple/texture_01.png" id="4_isu3i"]
 [ext_resource type="Shader" path="res://assets/shaders/outliner.gdshader" id="6_oa5ot"]
 [ext_resource type="Script" path="res://scripts/orangeBlock.gd" id="7_44b1g"]
 [ext_resource type="Script" path="res://scripts/GreenBlock.gd" id="7_edy68"]
 [ext_resource type="Texture2D" uid="uid://ibksedtyajll" path="res://assets/textures/kenney_prototype_textures/orange/texture_01.png" id="7_g6mth"]
 [ext_resource type="Texture2D" uid="uid://dc8bkaad78vr1" path="res://assets/textures/kenney_prototype_textures/green/texture_04.png" id="7_udk4l"]
-[ext_resource type="PackedScene" uid="uid://budtrg555tmre" path="res://assets/block tiles/scenes/block_default.tscn" id="10_njqxx"]
-[ext_resource type="PackedScene" uid="uid://dqpgnkiaca230" path="res://assets/block tiles/scenes/block_longx3blue.tscn" id="11_h3x0m"]
 [ext_resource type="Curve" uid="uid://cab5myl8duqct" path="res://assets/voxel_terrain/terrain_curve.tres" id="11_r2115"]
 [ext_resource type="Material" uid="uid://r43l2vdf4eto" path="res://assets/voxel_terrain/transvoxel_terrain_material.tres" id="12_3s1wn"]
 [ext_resource type="PackedScene" uid="uid://dwdapt6r0tqot" path="res://scenes/menu.tscn" id="12_q1b7v"]
 [ext_resource type="PackedScene" uid="uid://70hdnpxrk8mr" path="res://scenes/gui.tscn" id="12_yrqup"]
-[ext_resource type="PackedScene" uid="uid://bi5yha13u7dvt" path="res://grid-system/grid_container.tscn" id="13_baqp6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_im5on"]
 albedo_texture = ExtResource("4_isu3i")
@@ -21,18 +20,24 @@ albedo_texture = ExtResource("4_isu3i")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xejfd"]
 albedo_texture = ExtResource("7_g6mth")
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_75neh"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_r6fxo"]
+panorama = ExtResource("3_aayaa")
 
 [sub_resource type="Sky" id="Sky_y2dvk"]
-sky_material = SubResource("ProceduralSkyMaterial_75neh")
+sky_material = SubResource("PanoramaSkyMaterial_r6fxo")
 
 [sub_resource type="Environment" id="Environment_60vr0"]
 background_mode = 2
 sky = SubResource("Sky_y2dvk")
 tonemap_mode = 2
+ssao_enabled = true
 glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4qrpk"]
+size = Vector3(200, 10, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7qh56"]
+points = PackedVector3Array(101.567, 6.10987, 27.381, -101.567, -6.58606, -26.5873, -101.567, 6.10987, -26.5873, 101.567, -6.58606, -26.5873, -101.567, -6.58606, 27.381, -101.567, 6.10987, 27.381, 101.567, 6.10987, -26.5873, 101.567, -6.58606, 27.381)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2p50b"]
 
@@ -65,11 +70,6 @@ mesh_optimization_enabled = true
 
 [node name="EnvStuff" type="Node3D" parent="."]
 
-[node name="PurupleStaticBox" type="CSGBox3D" parent="EnvStuff"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32249, 0.934512, 0)
-material_override = SubResource("StandardMaterial3D_im5on")
-use_collision = true
-
 [node name="PurupleStaticBox2" type="CSGBox3D" parent="EnvStuff"]
 transform = Transform3D(1, 0, 0, 0, 0.52, 0, 0, 0, 1, -65.678, -7.4155, -0.5)
 material_override = SubResource("StandardMaterial3D_im5on")
@@ -78,12 +78,6 @@ size = Vector3(243, 22, 52)
 
 [node name="PurupleStaticBox3" type="CSGBox3D" parent="EnvStuff"]
 transform = Transform3D(0.707107, -0.919239, 0, 0.707107, 0.919239, 0, 0, 0, 1, -204.678, 130.585, -415.5)
-material_override = SubResource("StandardMaterial3D_xejfd")
-use_collision = true
-size = Vector3(243, 22, 26)
-
-[node name="PurupleStaticBox4" type="CSGBox3D" parent="EnvStuff"]
-transform = Transform3D(-0.258819, -1.2557, 0, 0.836516, -0.291387, 0.5, -0.482963, 0.168232, 0.866025, 420.322, 130.585, 303.5)
 material_override = SubResource("StandardMaterial3D_xejfd")
 use_collision = true
 size = Vector3(243, 22, 26)
@@ -100,12 +94,25 @@ visible = false
 cell_size = Vector3(0.2, 0.2, 0.2)
 metadata/_editor_floor_ = Vector3(0, 5, 0)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="EnvStuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 66)
+script = ExtResource("3_rpoat")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnvStuff/StaticBody3D"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -85, -54, -15)
+mesh = SubResource("BoxMesh_4qrpk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvStuff/StaticBody3D"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -85, -54, -15)
+shape = SubResource("ConvexPolygonShape3D_7qh56")
+
 [node name="Entity" parent="." instance=ExtResource("1_dv0ft")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.288, 3)
 
 [node name="RandomStuffTest" type="Node3D" parent="."]
 
 [node name="whiteBlock" type="RigidBody3D" parent="RandomStuffTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RandomStuffTest/whiteBlock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16831, -3.15433)
@@ -145,12 +152,6 @@ mesh = SubResource("BoxMesh_2p50b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16831, -3.15433)
 shape = SubResource("ConvexPolygonShape3D_7smqk")
 
-[node name="BlockDefault" parent="." instance=ExtResource("10_njqxx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.93998, 0.446319, -2.48008)
-
-[node name="BlockLong4" parent="." instance=ExtResource("11_h3x0m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48591, 0.720288, 0.453797)
-
 [node name="GUI" parent="." instance=ExtResource("12_yrqup")]
 
 [node name="speed" type="Label" parent="GUI"]
@@ -173,7 +174,5 @@ streaming_system = 1
 
 [node name="menu" parent="." instance=ExtResource("12_q1b7v")]
 
-[node name="static_grids" type="Node3D" parent="."]
-
-[node name="grid_container" parent="static_grids" instance=ExtResource("13_baqp6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+[node name="_grids" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0)

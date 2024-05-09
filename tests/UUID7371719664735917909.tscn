@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://grid_system2/Grid.gd" id="1_t4hvx"]
+[ext_resource type="PackedScene" path="res://grid_system2/Block.tscn" id="2_b174l"]
+
+[node name="UUID7371719664735917909" type="Node3D"]
+script = ExtResource("1_t4hvx")
+
+[node name="grid_body" type="RigidBody3D" parent="."]
+transform = Transform3D(0.987263, -0.158806, 0.00959186, 0.155218, 0.948222, -0.277095, 0.0349091, 0.275055, 0.960795, -0.110752, -49.2837, 0.22679)
+sleeping = true
+linear_velocity = Vector3(1.32138e-05, 2.36075e-05, 5.45546e-05)
+angular_velocity = Vector3(8.49643e-05, 0.000105118, -0.000158853)
+
+[node name="Block" parent="." instance=ExtResource("2_b174l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.345, -0.0211985, 2.9907)

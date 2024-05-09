@@ -45,8 +45,6 @@ func remove_block(scene,hit_normal,object):
 	debugger([object.get_path()])
 	grid_container.remove_child(object)
 
-func _ready():
-	add_to_group(grid_container.grid_UUID)
 
 	
 			
