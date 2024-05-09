@@ -55,6 +55,12 @@ func show_menu(item_map):
 func _onPress(id_pressed):
 	Config.menu_open=false
 	DebugConsole.log(id_pressed)
+
+
+
+
+
+
 	
 func menu_hide():
 	DebugConsole.log ("me cerre")

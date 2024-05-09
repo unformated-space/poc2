@@ -20,6 +20,7 @@ var lerp_factor: float = 0.0
 @onready var text: RichTextLabel = get_node("../../../GUI/log")
 
 func _ready():
+	
 	pass
 
 func _process (delta):

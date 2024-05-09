@@ -22,6 +22,7 @@ func _process(_delta):
 
 	if object:
 		if object and object is Interactable:
+			#DebugConsole.log(str(object.name))
 			if object.is_interactable == false:
 				return
 			object._focus(get_collision_point())
@@ -39,21 +40,25 @@ func _process(_delta):
 			if Input.is_action_just_pressed("mouse_right_click"):
 				#object._interact(get_collision_point())
 				object._interact_right(get_collision_normal(), object)
+				print ("object "+str(object.name))
 			if object.interact_prompt != "":
 				interact_label.text = "[L_click] " + object.interact_left_click_prompt
 			else:
 				interact_label.text = ""
 			if Input.is_action_just_pressed("mouse_left_click"):
 				#object._interact(get_collision_point())
+				print ("object "+str(object.name))
 				object._interact_left(get_collision_normal(), object)
 	else:
+		## TODO: mover esto a gridd
 		if Input.is_action_just_pressed("mouse_right_click"):
-			var _grids = get_node("/root/world/_grids")
-			var block_instance = load("res://grid_system2/Block.tscn").instantiate()
-			var forward_dir = global_transform.basis.z.normalized()
+			var block_in_hand = true #basarse en la ui y eso
+			if block_in_hand:
+				var _grids = get_node("/root/world/_grids")
+				var block_instance = load("res://grid_system2/Block.tscn").instantiate()
+				var forward_dir = transform.basis.z.normalized()
+				# Calcular la nueva posición delante de la cámara
+				var block_position = to_local(transform.origin) + (forward_dir * Vector3(1,0,0))
 
-			# Calcular la nueva posición delante de la cámara
-			var block_position = to_local(global_transform.origin) + (forward_dir * Vector3(1,0,0))
-
-			block_instance.global_transform.origin = block_position
-			_grids.add_child(block_instance)
+				block_instance.initial_hit_normal = block_position
+				_grids.add_child(block_instance)
