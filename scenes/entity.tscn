@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3675nehxlohi"]
+[gd_scene load_steps=9 format=3 uid="uid://d3675nehxlohi"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_bqh38"]
 [ext_resource type="Texture2D" uid="uid://dm04ybjniiou2" path="res://assets/textures/kenney_prototype_textures/purple/texture_08.png" id="2_7qve6"]
 [ext_resource type="PackedScene" uid="uid://bx3445d12qv84" path="res://scenes/cameraController.tscn" id="3_xtlsu"]
+[ext_resource type="Script" path="res://scripts/weapon_manager.gd" id="4_5w134"]
+[ext_resource type="PackedScene" uid="uid://cdahw7dke4o6m" path="res://scenes/weapon_lib.tscn" id="5_g3t4u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85ue2"]
 albedo_texture = ExtResource("2_7qve6")
@@ -33,3 +35,10 @@ shape = SubResource("CapsuleShape3D_2y40k")
 [node name="RayCast3D" type="RayCast3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, -2, 0)
+
+[node name="right_hand" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.561258, 0.189186, -0.633226)
+script = ExtResource("4_5w134")
+
+[node name="WeaponLib" parent="Player/right_hand" instance=ExtResource("5_g3t4u")]
+transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, -0.190031, 0, -0.117317)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdahw7dke4o6m"]
+
+[ext_resource type="PackedScene" uid="uid://byxr0bj1egxxl" path="res://assets/weapons_kenney/blasterG.glb" id="1_ykivm"]
+[ext_resource type="PackedScene" uid="uid://bhlphqo3gmvno" path="res://assets/weapons_kenney/blasterK.glb" id="2_5kpxx"]
+[ext_resource type="PackedScene" uid="uid://dogcqix21uuwf" path="res://assets/weapons_kenney/hand.tscn" id="3_2xop7"]
+
+[node name="WeaponLib" type="Node3D"]
+
+[node name="Hand" parent="." instance=ExtResource("3_2xop7")]
+visible = false
+
+[node name="blasterG2" parent="." instance=ExtResource("1_ykivm")]
+visible = false
+
+[node name="blasterK2" parent="." instance=ExtResource("2_5kpxx")]
+visible = false

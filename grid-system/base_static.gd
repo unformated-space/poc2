@@ -46,10 +46,6 @@ func remove_block(scene,hit_normal,object):
 	grid_container.remove_child(object)
 
 
-	
-			
-
-
 
 
 
