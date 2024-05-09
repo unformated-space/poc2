@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bk0hptkeov7eq"]
+[gd_scene load_steps=30 format=3 uid="uid://bk0hptkeov7eq"]
 
 [ext_resource type="PackedScene" uid="uid://d3675nehxlohi" path="res://scenes/entity.tscn" id="1_dv0ft"]
 [ext_resource type="Texture2D" uid="uid://cgfitu57oeqa7" path="res://assets/kloppenheim_06_puresky_4k.hdr" id="3_aayaa"]
@@ -8,11 +8,12 @@
 [ext_resource type="Script" path="res://scripts/orangeBlock.gd" id="7_44b1g"]
 [ext_resource type="Script" path="res://scripts/GreenBlock.gd" id="7_edy68"]
 [ext_resource type="Texture2D" uid="uid://ibksedtyajll" path="res://assets/textures/kenney_prototype_textures/orange/texture_01.png" id="7_g6mth"]
-[ext_resource type="Texture2D" uid="uid://dc8bkaad78vr1" path="res://assets/textures/kenney_prototype_textures/green/texture_04.png" id="7_udk4l"]
+[ext_resource type="Shader" path="res://tests/main.gdshader" id="8_rtmwq"]
 [ext_resource type="Curve" uid="uid://cab5myl8duqct" path="res://assets/voxel_terrain/terrain_curve.tres" id="11_r2115"]
 [ext_resource type="Material" uid="uid://r43l2vdf4eto" path="res://assets/voxel_terrain/transvoxel_terrain_material.tres" id="12_3s1wn"]
 [ext_resource type="PackedScene" uid="uid://dwdapt6r0tqot" path="res://scenes/menu.tscn" id="12_q1b7v"]
 [ext_resource type="PackedScene" uid="uid://70hdnpxrk8mr" path="res://scenes/gui.tscn" id="12_yrqup"]
+[ext_resource type="PackedScene" uid="uid://oq0qipop3fld" path="res://grid_system2/Block.tscn" id="13_1qmd3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_im5on"]
 albedo_texture = ExtResource("4_isu3i")
@@ -25,10 +26,12 @@ panorama = ExtResource("3_aayaa")
 
 [sub_resource type="Sky" id="Sky_y2dvk"]
 sky_material = SubResource("PanoramaSkyMaterial_r6fxo")
+radiance_size = 5
 
 [sub_resource type="Environment" id="Environment_60vr0"]
 background_mode = 2
 sky = SubResource("Sky_y2dvk")
+sky_rotation = Vector3(0, 2.53945, 0)
 tonemap_mode = 2
 ssao_enabled = true
 glow_enabled = true
@@ -44,8 +47,9 @@ points = PackedVector3Array(101.567, 6.10987, 27.381, -101.567, -6.58606, -26.58
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7smqk"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ajox"]
-albedo_texture = ExtResource("7_udk4l")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rwe68"]
+render_priority = 0
+shader = ExtResource("8_rtmwq")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nhpti"]
 resource_local_to_scene = true
@@ -129,7 +133,7 @@ interact_prompt = "Sarasear"
 
 [node name="MeshInstance" type="MeshInstance3D" parent="RandomStuffTest/GreenBlock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16831, -3.15433)
-material_override = SubResource("StandardMaterial3D_5ajox")
+material_overlay = SubResource("ShaderMaterial_rwe68")
 mesh = SubResource("BoxMesh_2p50b")
 surface_material_override/0 = SubResource("ShaderMaterial_nhpti")
 
@@ -150,6 +154,10 @@ mesh = SubResource("BoxMesh_2p50b")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RandomStuffTest/OrangeBlock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16831, -3.15433)
+shape = SubResource("ConvexPolygonShape3D_7smqk")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RandomStuffTest/OrangeBlock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16831, -2.15433)
 shape = SubResource("ConvexPolygonShape3D_7smqk")
 
 [node name="GUI" parent="." instance=ExtResource("12_yrqup")]
@@ -176,3 +184,6 @@ streaming_system = 1
 
 [node name="_grids" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0)
+
+[node name="Block" parent="." instance=ExtResource("13_1qmd3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)

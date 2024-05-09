@@ -53,7 +53,7 @@ func _process(_delta):
 			var forward_dir = global_transform.basis.z.normalized()
 
 			# Calcular la nueva posición delante de la cámara
-			var block_position = global_transform.origin + (forward_dir * Vector3(0,0,-10))
+			var block_position = to_local(global_transform.origin) + (forward_dir * Vector3(1,0,0))
 
 			block_instance.global_transform.origin = block_position
 			_grids.add_child(block_instance)
