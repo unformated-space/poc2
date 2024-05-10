@@ -1,8 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://bk0hptkeov7eq"]
+[gd_scene load_steps=28 format=3 uid="uid://bk0hptkeov7eq"]
 
 [ext_resource type="PackedScene" uid="uid://d3675nehxlohi" path="res://scenes/entity.tscn" id="1_dv0ft"]
 [ext_resource type="Texture2D" uid="uid://cgfitu57oeqa7" path="res://assets/kloppenheim_06_puresky_4k.hdr" id="3_aayaa"]
-[ext_resource type="Script" path="res://scripts/testwiteslab.gd" id="3_rpoat"]
 [ext_resource type="Texture2D" uid="uid://cc2qs5we0kmid" path="res://assets/textures/kenney_prototype_textures/purple/texture_01.png" id="4_isu3i"]
 [ext_resource type="Shader" path="res://assets/shaders/outliner.gdshader" id="6_oa5ot"]
 [ext_resource type="Script" path="res://scripts/orangeBlock.gd" id="7_44b1g"]
@@ -101,7 +100,6 @@ metadata/_editor_floor_ = Vector3(0, 5, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="EnvStuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 66)
-script = ExtResource("3_rpoat")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnvStuff/StaticBody3D"]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -85, -54, -15)

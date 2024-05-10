@@ -14,10 +14,10 @@ var weapon_lib
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	weapon_ammount=weapon_library.get_child_count()
-	DebugConsole.log (weapon_ammount)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	DebugConsole.log(current_weapon)
+
 	if last_weapon != current_weapon:
 		weapon= weapon_library.get_child(last_weapon)
 		weapon.visible=false

@@ -62,8 +62,11 @@ func _ready():
 		_grid.add_child(collision_shape)
 		_grid.add_child(grid_mesh)
 		_grid.global_transform = global_transform
-		#reparent(_grid, true)
-		queue_free()
+		name="area_from_(0,0,0)"
+		
+		reparent(_grid, true)
+
+
 
 func debugger(args):
 	var result = ""
@@ -97,7 +100,6 @@ func add_block(hit_normal,object, interact=true):
 			elif child.transform.origin.snapped(grid_size) == grid_position:
 				print ("block_already in position")
 				return # Block already exists at this positiondw
-
 	# Instance the block
 	var block_instance = load(BASE_STATIC).instantiate()
 	block_instance.transform.origin = grid_position
@@ -107,7 +109,7 @@ func add_block(hit_normal,object, interact=true):
 	grid_container.add_child(block_instance)
 	block_collmesh.reparent(grid_container, true)
 
-
+## TODO: on remove block si se remueve 0.0.0 el rigid body se tiene q mover lo mejor seria q el rigid body no tenga volumen y se mueva siempre al centro de maza
 func random_color():
 	# Genera valores aleatorios para los componentes rojo, verde y azul
 	var r = randf()  # Genera un número flotante aleatorio entre 0 y 1
