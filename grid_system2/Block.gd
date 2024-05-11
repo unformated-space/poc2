@@ -76,31 +76,29 @@ func debugger(args):
 #
 func add_block(hit_normal,object, interact=true):
 	const BASE_STATIC = "res://grid_system2/Block.tscn"
-	var parent = get_parent()
-	var grid_container = get_node(parent.get_path())
+	var grid_container = get_parent()
 	print ("entre aca")
-	debugger ([parent.name, parent.get_class()])
-	var grid_size =Vector3(0.5, 0.5, 0.5)
-	#var grid_size =Vector3(1, 1, 1)w
+	var grid_size =Vector3(0.5, 0.5, 0.5) #en metros
+	#var grid_size =Vector3(1, 1, 1)
 	# Compute the grid position based on block size
-	var grid_position = (object.transform.origin )+( hit_normal* grid_size ) 
-	#debugger([object.transform.origin.floor() , hit_normal.floor()])
+	var new_block_position = object.transform.origin + (hit_normal * grid_size)
+	debugger([new_block_position, object.transform.origin , hit_normal,  (hit_normal * grid_size)])
 	# Check if there is already a block at this position (optional, depending on your design)
 	for child in grid_container.get_children():
-		if child.global_transform.origin == grid_position:
+		if child.global_transform.origin == new_block_position:
 			return # Block already exists at this positiondw
 
 	# Instance the block
-	var block_instance = load(BASE_STATIC).instantiate()
-
+	var new_block_instance = load(BASE_STATIC).instantiate()
+	new_block_instance.name = "area_from_"+str(new_block_position).replace(" ","")
 	# Add the block instance to the current node or another parent node
+	new_block_instance.transform.origin = new_block_position
 
-	block_instance.transform.origin = grid_position
-	var block_collmesh = block_instance.get_node("collision")
-	var block_mesh = block_instance.get_node("mesh")
+	var block_collmesh = new_block_instance.get_node("collision")
+	var block_mesh = new_block_instance.get_node("mesh")
 
-	block_collmesh.name = "collision_from_"+str(grid_position).replace(" ","")
-	block_instance.name = "area_from_"+str(grid_position).replace(" ","")
+	block_collmesh.name = "collision_from_"+str(object.transform.origin).replace(" ","")
+
 	#random color
 	var material = StandardMaterial3D.new()
 	material.albedo_color = random_color()
@@ -108,9 +106,8 @@ func add_block(hit_normal,object, interact=true):
 	
 
 	
-	var grid_body = get_node(str(parent.get_path())+"/grid_body")
-	grid_container.add_child(block_instance)
-	
+	var grid_body = get_node(str(grid_container.get_path())+"/grid_body")
+	grid_container.add_child(new_block_instance)
 	var new_collision_for_body = CollisionShape3D.new()
 	new_collision_for_body.set_shape (get_node(block_collmesh.get_path()).get_shape())
 	new_collision_for_body.name = block_collmesh.name
