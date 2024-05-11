@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://oq0qipop3fld"]
+
+[ext_resource type="Script" path="res://grid_system2/Block.gd" id="1_x7vje"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0l87s"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8biw3"]
+points = PackedVector3Array(0.25, 0.25, 0.25, 0.25, 0.25, -0.25, -0.25, 0.25, 0.25, 0.25, -0.25, 0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25)
+
+[node name="Block" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_x7vje")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("BoxMesh_0l87s")
+
+[node name="collision" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_8biw3")

@@ -16,7 +16,7 @@ class Monitor:
 var consoleLog = []
 var commands = {}
 var monitors = {}
-
+var editing = false
 var showStats = false
 var showMiniLog = false
 
@@ -86,18 +86,24 @@ func _input(event):
 	# Open debug
 	if !commandField.visible and event.is_action_pressed("open_debug"):
 		show_console()
-		_on_command_field_text_changed(commandField.text)
-		# This is stupid but it works
-		await get_tree().create_timer(0.02).timeout
-		commandField.grab_focus()
+		
+
 	# Close debug
 	elif visible and event.is_action_pressed("open_debug"):
 		hide_console(showStats, showMiniLog)
 	# Enter command
-	elif visible and event.is_action_pressed("ui_text_submit"):
+	elif visible and editing == true and  event.is_action_pressed("ui_text_submit"):
 		DebugConsole.log("> " + commandField.text)
 		process_command(commandField.text)
 		commandField.clear()
+		editing =false 
+		
+	elif visible and editing == false and event.is_action_pressed("ui_text_submit"):
+		editing = true
+		_on_command_field_text_changed(commandField.text)
+		# This is stupid but it works
+		await get_tree().create_timer(0.02).timeout
+		commandField.grab_focus()
 
 func _on_command_field_text_changed(new_text):
 	var commandHints = []
