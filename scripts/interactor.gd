@@ -59,7 +59,7 @@ func _process(_delta):
 				var forward_direction = ignore_this.global_transform.basis.z.normalized() * -1
 				var new_position = ignore_this.global_position  + forward_direction * 1.0
 				# Calcular la nueva posición delante de la cámara
-				DebugConsole.log("player pos"+str(global_position))
-				DebugConsole.log("onCreate"+str(new_position))
+				#DebugConsole.log("player pos"+str(global_position))
+				#DebugConsole.log("onCreate"+str(new_position))
 				block_instance.initial_hit_normal = new_position
 				_grids.add_child(block_instance)

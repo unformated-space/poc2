@@ -7,7 +7,7 @@ extends Interactable
 var initial_hit_normal = Vector3.ZERO
 var initial_object = Object
 func _interact_right(hit_normal, hit_point, collided_object):
-	print ("interacted?")
+	#print ("interacted?")
 	add_block( hit_normal,hit_point,collided_object)
 
 #func _interact_left(_position, collided_object):
@@ -16,14 +16,14 @@ func _interact_right(hit_normal, hit_point, collided_object):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var parent = get_parent()
-	if parent.name == "_grids":
+	var _grids = get_parent()
+	if _grids.name == "_grids":
 		print ("onready")
-		var _grid_Instance = load("res://grid_system2/Grid.tscn").instantiate()
+		var _grid_instance = load("res://grid_system2/Grid.tscn").instantiate()
 		var UUID = "UUID"+str(ResourceUID.create_id())
-		_grid_Instance.name=UUID
-		parent.add_child(_grid_Instance)
-		var _grid = get_node("/root/world/_grids/"+UUID+"/grid_body")
+		_grid_instance.name=UUID
+		_grids.add_child(_grid_instance)
+		var _body = get_node("/root/world/_grids/"+UUID+"/grid_body")
 		var grid_area = get_node("/root/world/_grids/"+UUID+"/grid_area")
 
 
@@ -51,6 +51,7 @@ func _ready():
 		var collision_shape = CollisionShape3D.new()
 		collision_shape.set_shape (mesh.mesh.create_convex_shape())
 		collision_shape.name = "grid_body_collision"
+		collision_shape.shape.margin=0
 		grid_mesh.mesh = mesh.mesh
 		grid_mesh.name= "grid_body_mesh"
 		
@@ -59,12 +60,12 @@ func _ready():
 		material.albedo_color = random_color()
 		grid_mesh.material_override = material
 
-		_grid.add_child(collision_shape)
-		_grid.add_child(grid_mesh)
-		_grid.global_transform = global_transform
+		_body.add_child(collision_shape)
+		#_body.add_child(grid_mesh)
+		_body.global_transform = global_transform
 		name="area_from_(0,0,0)"
 		
-		reparent(_grid, true)
+		reparent(_grid_instance, true)
 
 
 
@@ -76,19 +77,26 @@ func debugger(args):
 #
 #hit_normal contanis the get_collision_normal of a raycast
 #hit_point contanis the get_collision_point of a raycast
-
+func snapped_to_grid(position: Vector3) -> Vector3:
+	var grid_size = Vector3(0.5, 0.5, 0.5)
+	return Vector3(
+		floor(position.x / grid_size.x) * grid_size.x,
+		floor(position.y / grid_size.y) * grid_size.y,
+		floor(position.z / grid_size.z) * grid_size.z
+	)
 func add_block(hit_normal,hit_point,collided_object, interact=true):
 	const BASE_STATIC = "res://grid_system2/Block.tscn"
 	var grid_container = get_parent()
-	print ("entre aca")
 	var grid_size =Vector3(0.5, 0.5, 0.5) #en metros
 	#var grid_size =Vector3(1, 1, 1)
 	# Compute the grid position based on block size
-	var new_block_position = collided_object.transform.origin + (hit_point * grid_size)
+	var new_block_position = collided_object.transform.origin + (hit_normal.snapped(grid_size)*grid_size)
+	debugger([collided_object.name])
 	debugger([new_block_position, collided_object.transform.origin , hit_normal,  (hit_normal * grid_size)])
 	# Check if there is already a block at this position (optional, depending on your design)
 	for child in grid_container.get_children():
-		if child.global_transform.origin == new_block_position:
+		if child.transform.origin == new_block_position:
+			DebugConsole.log("already here "+child.name)
 			return # Block already exists at this positiondw
 
 	# Instance the block
@@ -99,7 +107,7 @@ func add_block(hit_normal,hit_point,collided_object, interact=true):
 
 	var block_collmesh = new_block_instance.get_node("collision")
 	var block_mesh = new_block_instance.get_node("mesh")
-
+	block_collmesh.disabled
 	block_collmesh.name = "collision_from_"+str(collided_object.transform.origin).replace(" ","")
 
 	#random color
