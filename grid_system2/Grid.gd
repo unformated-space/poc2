@@ -17,7 +17,11 @@ func _ready():
 	#for enemigo in get_tree().get_nodes_in_group(grid_UUID):
 		#DebugConsole.log("the friends"+ str(enemigo))
 	$grid_body.connect("child_entered_tree", block_added)
+	DebugConsole.log("sala"+str(position))
+	DebugConsole.log("vody"+str(grid_body.position))
 func _process(delta):
+	#position=grid_body.position
+
 	pass
 
 

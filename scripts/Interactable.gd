@@ -12,19 +12,19 @@ var menu : PopupMenu
 @export var interact_right_click_prompt: String = ""
 @export var is_interactable: bool = true
 
-func _interact(_position):
-	DebugConsole.log(_position)
+func _interact(hit_normal, hit_position = Vector3.ZERO):
+	DebugConsole.log(hit_normal)
 
 func _unfocus():
 	pass
 
-func _focus(_position):
+func _focus(hit_normal):
 	pass
 	
-func _interact_left(_position, object):
-	DebugConsole.log(_position)
-func _interact_right(_position, object):
-	DebugConsole.log(_position)
+func _interact_left(hit_normal, hit_position, collided_object):
+	DebugConsole.log(collided_object)
+func _interact_right(hit_normal, hit_position, collided_object):
+	DebugConsole.log(collided_object)
 
 	
 	

@@ -24,7 +24,7 @@ func _focus(_position):
 	material.shader = shader
 	mesh_instance_3d.set_material_overlay(material)
 
-func _interact(_position):
+func _interact(_position, hit_position=Vector3.ZERO):
 	print("saraseado")
 	print(mesh_instance_3d.get_active_material(0))
 	var material = StandardMaterial3D.new()

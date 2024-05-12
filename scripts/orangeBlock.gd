@@ -15,7 +15,7 @@ var country_capitals = {
 	"Rusia": "Moscú",
 	"Suecia": "Estocolmo"
 }
-func _interact(_position):
+func _interact(_position, hit_position=Vector3.ZERO):
 	report()
 	var selected = show_menu(country_capitals)
 	DebugConsole.log (selected)

@@ -6,12 +6,12 @@ extends Interactable
 
 var initial_hit_normal = Vector3.ZERO
 var initial_object = Object
-func _interact_right(hit_normal, object):
+func _interact_right(hit_normal, hit_point, collided_object):
 	print ("interacted?")
-	add_block( hit_normal,object)
+	add_block( hit_normal,hit_point,collided_object)
 
-#func _interact_left(_position, object):
-	#remove_block(BASE_STATIC, _position,object)
+#func _interact_left(_position, collided_object):
+	#remove_block(BASE_STATIC, _position,collided_object)
 	#
 
 # Called when the node enters the scene tree for the first time.
@@ -74,15 +74,18 @@ func debugger(args):
 		result += " "+str(arg)
 	DebugConsole.log(result)
 #
-func add_block(hit_normal,object, interact=true):
+#hit_normal contanis the get_collision_normal of a raycast
+#hit_point contanis the get_collision_point of a raycast
+
+func add_block(hit_normal,hit_point,collided_object, interact=true):
 	const BASE_STATIC = "res://grid_system2/Block.tscn"
 	var grid_container = get_parent()
 	print ("entre aca")
 	var grid_size =Vector3(0.5, 0.5, 0.5) #en metros
 	#var grid_size =Vector3(1, 1, 1)
 	# Compute the grid position based on block size
-	var new_block_position = object.transform.origin + (hit_normal * grid_size)
-	debugger([new_block_position, object.transform.origin , hit_normal,  (hit_normal * grid_size)])
+	var new_block_position = collided_object.transform.origin + (hit_point * grid_size)
+	debugger([new_block_position, collided_object.transform.origin , hit_normal,  (hit_normal * grid_size)])
 	# Check if there is already a block at this position (optional, depending on your design)
 	for child in grid_container.get_children():
 		if child.global_transform.origin == new_block_position:
@@ -97,7 +100,7 @@ func add_block(hit_normal,object, interact=true):
 	var block_collmesh = new_block_instance.get_node("collision")
 	var block_mesh = new_block_instance.get_node("mesh")
 
-	block_collmesh.name = "collision_from_"+str(object.transform.origin).replace(" ","")
+	block_collmesh.name = "collision_from_"+str(collided_object.transform.origin).replace(" ","")
 
 	#random color
 	var material = StandardMaterial3D.new()
