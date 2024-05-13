@@ -113,7 +113,7 @@ func add_block(hit_normal,hit_point,collided_object, interact=true):
 	#random color
 	var material = StandardMaterial3D.new()
 	material.albedo_color = random_color()
-	block_mesh.material_override = material
+	mesh.material_override = material
 	
 
 	
