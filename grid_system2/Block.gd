@@ -58,7 +58,7 @@ func _ready():
 		#random color
 		var material = StandardMaterial3D.new()
 		material.albedo_color = random_color()
-		grid_mesh.material_override = material
+		mesh.material_override = material
 
 		_body.add_child(collision_shape)
 		#_body.add_child(grid_mesh)
@@ -113,7 +113,7 @@ func add_block(hit_normal,hit_point,collided_object, interact=true):
 	#random color
 	var material = StandardMaterial3D.new()
 	material.albedo_color = random_color()
-	mesh.material_override = material
+	block_mesh.material_override = material
 	
 
 	
