@@ -7,19 +7,29 @@ var wheel_timer := 0.0
 var move_direction := ""
 var menu_actual = 0
 var menu : PopupMenu
+
+@export var mesh_instance_3d: MeshInstance3D
+
 @export var interact_prompt: String = ""
 @export var interact_left_click_prompt: String = ""
 @export var interact_right_click_prompt: String = ""
 @export var is_interactable: bool = true
 
+
+
+
 func _interact(hit_normal, hit_position = Vector3.ZERO):
 	DebugConsole.log(hit_normal)
 
-func _unfocus():
-	pass
 
-func _focus(hit_normal):
-	pass
+func _unfocus():
+	mesh_instance_3d.set_material_overlay(null)
+
+func _focus(_position):
+	var material = ShaderMaterial.new()
+	var shader = load("res://assets/shaders/outliner.gdshader")
+	material.shader = shader
+	mesh_instance_3d.set_material_overlay(material)
 	
 func _interact_left(hit_normal, hit_position, collided_object):
 	DebugConsole.log(collided_object)

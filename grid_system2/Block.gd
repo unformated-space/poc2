@@ -24,7 +24,7 @@ func _ready():
 		_grid_instance.name=UUID
 		_grids.add_child(_grid_instance)
 		var _body = get_node("/root/world/_grids/"+UUID+"/grid_body")
-		var grid_area = get_node("/root/world/_grids/"+UUID+"/grid_area")
+
 
 
 		#var area_mesh = MeshInstance3D.new()
@@ -55,11 +55,12 @@ func _ready():
 		grid_mesh.mesh = mesh.mesh
 		grid_mesh.name= "grid_body_mesh"
 		
+		
 		#random color
 		var material = StandardMaterial3D.new()
 		material.albedo_color = random_color()
 		mesh.material_override = material
-
+		_body.mesh_instance_3d=grid_mesh
 		_body.add_child(collision_shape)
 		#_body.add_child(grid_mesh)
 		_body.global_transform = global_transform

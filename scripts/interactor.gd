@@ -27,24 +27,25 @@ func _process(_delta):
 				return
 			collided_object._focus(get_collision_point())
 			focused_object = collided_object
+			
 			if collided_object.interact_prompt != "":
 				interact_label.text = "[F] " + collided_object.interact_prompt
+			elif collided_object.interact_right_click_prompt != "":
+				interact_label.text = "[R_click] " + collided_object.interact_right_click_prompt
+			elif collided_object.interact_left_click_prompt != "":
+				interact_label.text = "[L_click] " + collided_object.interact_left_click_prompt
 			else:
 				interact_label.text = ""
+				
+				
 			if Input.is_action_just_pressed("interact"):
 				collided_object._interact(get_collision_point())
-			if collided_object.interact_prompt != "":
-				interact_label.text = "[R_click] " + collided_object.interact_right_click_prompt
-			else:
-				interact_label.text = ""
+			
 			if Input.is_action_just_pressed("mouse_right_click"):
 				#collided_object._interact(get_collision_point())
 				collided_object._interact_right(get_collision_normal(),get_collision_point(), collided_object)
 				print ("collided_object "+str(collided_object.name))
-			if collided_object.interact_prompt != "":
-				interact_label.text = "[L_click] " + collided_object.interact_left_click_prompt
-			else:
-				interact_label.text = ""
+			
 			if Input.is_action_just_pressed("mouse_left_click"):
 				#collided_object._interact(get_collision_point())
 				print ("collided_object "+str(collided_object.name))

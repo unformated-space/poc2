@@ -9,14 +9,16 @@ size = Vector3(0.5, 0.5, 0.5)
 margin = 0.0
 points = PackedVector3Array(0.25, 0.25, 0.25, 0.25, 0.25, -0.25, -0.25, 0.25, 0.25, 0.25, -0.25, 0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25)
 
-[node name="Block" type="Area3D"]
+[node name="Block" type="Area3D" node_paths=PackedStringArray("mesh_instance_3d")]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_x7vje")
+mesh_instance_3d = NodePath("mesh")
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 layers = 2
 mesh = SubResource("BoxMesh_0l87s")
+skeleton = NodePath("../..")
 
 [node name="collision" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_8biw3")
