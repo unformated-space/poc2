@@ -1,10 +1,11 @@
-extends Block
-
+extends Interactable
+#
 var grid
-
-func _ready():
-	grid=get_parent()
-	DebugConsole.log (grid.name)
-
+#
+#func _ready():
+	#grid=get_parent()
+	#DebugConsole.log (grid.name)
+#
 func _physics_process(delta):
-	grid.global_transform = global_transform
+	var grid_container=get_parent()
+	grid_container.global_transform = global_transform

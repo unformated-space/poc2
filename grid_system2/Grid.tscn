@@ -7,5 +7,7 @@
 script = ExtResource("1_5s61o")
 
 [node name="grid_body" type="StaticBody3D" parent="."]
-collision_layer = 3
+visible = false
+collision_mask = 3
 script = ExtResource("2_sp4qf")
+is_focuseable = false

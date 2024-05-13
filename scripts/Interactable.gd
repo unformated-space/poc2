@@ -14,7 +14,7 @@ var menu : PopupMenu
 @export var interact_left_click_prompt: String = ""
 @export var interact_right_click_prompt: String = ""
 @export var is_interactable: bool = true
-
+@export var is_focuseable: bool = true
 
 
 
@@ -23,13 +23,15 @@ func _interact(hit_normal, hit_position = Vector3.ZERO):
 
 
 func _unfocus():
-	mesh_instance_3d.set_material_overlay(null)
+	if is_focuseable:
+		mesh_instance_3d.set_material_overlay(null)
 
 func _focus(_position):
-	var material = ShaderMaterial.new()
-	var shader = load("res://assets/shaders/outliner.gdshader")
-	material.shader = shader
-	mesh_instance_3d.set_material_overlay(material)
+	if is_focuseable:
+		var material = ShaderMaterial.new()
+		var shader = load("res://assets/shaders/outliner.gdshader")
+		material.shader = shader
+		mesh_instance_3d.set_material_overlay(material)
 	
 func _interact_left(hit_normal, hit_position, collided_object):
 	DebugConsole.log(collided_object)

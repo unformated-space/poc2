@@ -1,4 +1,3 @@
-class_name Grid_Manager
 extends Node3D
 @onready var grid_body = $grid_body
 @onready var grid_body_collision = $grid_body/grid_body_collision

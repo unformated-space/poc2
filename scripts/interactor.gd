@@ -57,7 +57,7 @@ func _process(_delta):
 			if block_in_hand:
 				var _grids = get_node("/root/world/_grids")
 				var block_instance = load("res://grid_system2/Block.tscn").instantiate()
-				var forward_direction = ignore_this.global_transform.basis.z.normalized() * -1
+				var forward_direction = ignore_this.global_transform.basis.z.normalized() * -3
 				var new_position = ignore_this.global_position  + forward_direction * 1.0
 				# Calcular la nueva posición delante de la cámara
 				#DebugConsole.log("player pos"+str(global_position))
