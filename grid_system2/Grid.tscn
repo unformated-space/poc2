@@ -1,13 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjlmimdd71lv8"]
+[gd_scene load_steps=2 format=3 uid="uid://cjlmimdd71lv8"]
 
 [ext_resource type="Script" path="res://grid_system2/Grid.gd" id="1_5s61o"]
-[ext_resource type="Script" path="res://grid_system2/grid_body.gd" id="2_sp4qf"]
 
-[node name="Grid" type="Node3D"]
+[node name="Grid" type="RigidBody3D"]
 script = ExtResource("1_5s61o")
-
-[node name="grid_body" type="StaticBody3D" parent="."]
-visible = false
-collision_mask = 3
-script = ExtResource("2_sp4qf")
-is_focuseable = false

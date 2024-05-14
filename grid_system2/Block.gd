@@ -3,6 +3,8 @@ extends Interactable
 @onready var mesh = $mesh
 @onready var collision = $collision
 
+@export var coloreable : bool = true
+
 #@onready var grid_container = $"."
 
 var initial_hit_normal = Vector3.ZERO
@@ -11,9 +13,9 @@ func _interact_right(hit_normal, hit_point, collided_object):
 	#print ("interacted?")
 	add_block( hit_normal,hit_point,collided_object)
 
-#func _interact_left(_position, collided_object):
-	#remove_block(BASE_STATIC, _position,collided_object)
-	#
+func _interact_left(hit_normal, hit_point, collided_object):
+	remove_block( hit_normal,hit_point,collided_object)
+	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,17 +38,19 @@ func _ready():
 		grid_mesh.set_layer_mask_value(1, false)
 		grid_mesh.set_layer_mask_value(2, true)
 		#random color
-		var material = StandardMaterial3D.new()
-		material.albedo_color = random_color()
-		mesh.material_override = material
+		if coloreable:
+			var material = StandardMaterial3D.new()
+			material.albedo_color = random_color()
+			mesh.material_override = material
 		
-		grid_body.add_child(grid_mesh)
+		new_grid_container.add_child(grid_mesh)
 		
 		var new_collision_for_body = CollisionShape3D.new()
 		new_collision_for_body.set_shape (collision.get_shape())
 		new_collision_for_body.name = "collision_from_(0,0,0)"
 		new_collision_for_body.shape.margin=0
-		grid_body.add_child(new_collision_for_body)
+		new_grid_container.add_child(new_collision_for_body)
+
 
 
 		mesh_instance_3d=mesh
@@ -72,15 +76,13 @@ func snapped_to_grid(position: Vector3) -> Vector3:
 		floor(position.y / grid_size.y) * grid_size.y,
 		floor(position.z / grid_size.z) * grid_size.z
 	)
-func add_block(hit_normal,hit_point,collided_object, interact=true):
+func add_block(hit_normal,hit_point,collided_object):
 	const BASE_STATIC = "res://grid_system2/Block.tscn"
 	var grid_container = get_parent()
 	var grid_size =Vector3(0.5, 0.5, 0.5) #en metros
 	#var grid_size =Vector3(1, 1, 1)
 	# Compute the grid position based on block size
 	var new_block_position = collided_object.transform.origin + (hit_normal.snapped(grid_size)*grid_size)
-	debugger([collided_object.name])
-	debugger([new_block_position, collided_object.transform.origin , hit_normal,  (hit_normal * grid_size)])
 	# Check if there is already a block at this position (optional, depending on your design)
 	for child in grid_container.get_children():
 		if child.transform.origin == new_block_position:
@@ -99,21 +101,37 @@ func add_block(hit_normal,hit_point,collided_object, interact=true):
 	#block_collmesh.name = "collision_from_"+str(collided_object.transform.origin).replace(" ","")
 	block_collmesh.name = "collision_from_"+str(new_block_position).replace(" ","")
 	#random color
-	var material = StandardMaterial3D.new()
-	material.albedo_color = random_color()
-	block_mesh.material_override = material
+	if coloreable:
+		var material = StandardMaterial3D.new()
+		material.albedo_color = random_color()
+		block_mesh.material_override = material
 	
 	grid_container.add_child(new_block_instance)
 	
-	var grid_body = get_node(str(grid_container.get_path())+"/grid_body")
-
+	
 	var new_collision_for_body = CollisionShape3D.new()
 	new_collision_for_body.set_shape (get_node(block_collmesh.get_path()).get_shape())
 	new_collision_for_body.name = block_collmesh.name
 	new_collision_for_body.shape.margin=0
 	new_collision_for_body.transform.origin = new_block_instance.transform.origin
-	grid_body.add_child(new_collision_for_body)
-	
+	grid_container.add_child(new_collision_for_body)
+
+
+
+
+func remove_block(hit_normal,hit_point,collided_object):
+	var grid_container = get_parent()
+	var grid_size =Vector3(0.5, 0.5, 0.5) #en metros
+	#var grid_size =Vector3(1, 1, 1)
+	# Compute the grid position based on block size
+	var new_block_position = collided_object.transform.origin - (hit_normal.snapped(grid_size)*grid_size)
+	# Check if there is already a block at this position (optional, depending on your design)
+	for child in grid_container.get_children():
+		if child.transform.origin == collided_object.transform.origin:
+			child.queue_free()
+
+
+
 ## TODO: on remove block si se remueve 0.0.0 el rigid body se tiene q mover lo mejor seria q el rigid body no tenga volumen y se mueva siempre al centro de maza
 func random_color():
 	# Genera valores aleatorios para los componentes rojo, verde y azul
