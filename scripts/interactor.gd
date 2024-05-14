@@ -5,7 +5,7 @@ class_name Interactor
 @onready var ignore_this := get_node("../../../../../Player")
 @onready var interact_label = $interact_label
 
-var collided_object
+var focused_object
 
 func _ready():
 	add_exception(ignore_this)
@@ -13,42 +13,43 @@ func _ready():
 
 
 func _process(_delta):
-	var object = get_collider()
-	#DebugConsole.log(object)
+	var collided_object = get_collider()
+	#DebugConsole.log(collided_object)
 	interact_label.text = ""
-	if collided_object != object and collided_object != null:
-		collided_object._unfocus()
-		collided_object = null
+	if focused_object != collided_object and focused_object != null:
+		focused_object._unfocus()
+		focused_object = null
 
-	if object:
-		if object and object is Interactable:
-			#DebugConsole.log(str(object.name))
-			if object.is_interactable == false:
+	if collided_object:
+		if collided_object and collided_object is Interactable:
+			#DebugConsole.log(str(collided_object.name))
+			if collided_object.is_interactable == false:
 				return
-			object._focus(get_collision_point())
-			collided_object = object
-			if object.interact_prompt != "":
-				interact_label.text = "[F] " + object.interact_prompt
+			collided_object._focus(get_collision_point())
+			focused_object = collided_object
+			
+			if collided_object.interact_prompt != "":
+				interact_label.text = "[F] " + collided_object.interact_prompt
+			elif collided_object.interact_right_click_prompt != "":
+				interact_label.text = "[R_click] " + collided_object.interact_right_click_prompt
+			elif collided_object.interact_left_click_prompt != "":
+				interact_label.text = "[L_click] " + collided_object.interact_left_click_prompt
 			else:
 				interact_label.text = ""
+				
+				
 			if Input.is_action_just_pressed("interact"):
-				object._interact(get_collision_point())
-			if object.interact_prompt != "":
-				interact_label.text = "[R_click] " + object.interact_right_click_prompt
-			else:
-				interact_label.text = ""
+				collided_object._interact(get_collision_point())
+			
 			if Input.is_action_just_pressed("mouse_right_click"):
-				#object._interact(get_collision_point())
-				object._interact_right(get_collision_normal(), object)
-				print ("object "+str(object.name))
-			if object.interact_prompt != "":
-				interact_label.text = "[L_click] " + object.interact_left_click_prompt
-			else:
-				interact_label.text = ""
+				#collided_object._interact(get_collision_point())
+				collided_object._interact_right(get_collision_normal(),get_collision_point(), collided_object)
+				print ("collided_object "+str(collided_object.name))
+			
 			if Input.is_action_just_pressed("mouse_left_click"):
-				#object._interact(get_collision_point())
-				print ("object "+str(object.name))
-				object._interact_left(get_collision_normal(), object)
+				#collided_object._interact(get_collision_point())
+				print ("collided_object "+str(collided_object.name))
+				collided_object._interact_left(get_collision_normal(),get_collision_point(), collided_object)
 	else:
 		## TODO: mover esto a gridd
 		if Input.is_action_just_pressed("mouse_right_click"):
@@ -56,9 +57,10 @@ func _process(_delta):
 			if block_in_hand:
 				var _grids = get_node("/root/world/_grids")
 				var block_instance = load("res://grid_system2/Block.tscn").instantiate()
-				var forward_dir = transform.basis.z.normalized()
+				var forward_direction = ignore_this.global_transform.basis.z.normalized() * -3
+				var new_position = ignore_this.global_position  + forward_direction * 1.0
 				# Calcular la nueva posición delante de la cámara
-				var block_position = to_local(transform.origin) + (forward_dir * Vector3(1,0,0))
-
-				block_instance.initial_hit_normal = block_position
+				#DebugConsole.log("player pos"+str(global_position))
+				#DebugConsole.log("onCreate"+str(new_position))
+				block_instance.initial_hit_normal = new_position
 				_grids.add_child(block_instance)
