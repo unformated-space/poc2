@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://cc2qs5we0kmid" path="res://assets/textures/kenney_prototype_textures/purple/texture_01.png" id="4_isu3i"]
 [ext_resource type="Shader" path="res://assets/shaders/outliner.gdshader" id="6_oa5ot"]
 [ext_resource type="Texture2D" uid="uid://dgyjggm5gqco1" path="res://assets/textures/kenney_prototype_textures/green/texture_01.png" id="6_puv7o"]
-[ext_resource type="Script" path="res://scripts/orangeBlock.gd" id="7_44b1g"]
-[ext_resource type="Script" path="res://scripts/GreenBlock.gd" id="7_edy68"]
+[ext_resource type="Script" path="res://scripts/random_stuff_test/orangeBlock.gd" id="7_44b1g"]
+[ext_resource type="Script" path="res://scripts/random_stuff_test/GreenBlock.gd" id="7_edy68"]
 [ext_resource type="Texture2D" uid="uid://ibksedtyajll" path="res://assets/textures/kenney_prototype_textures/orange/texture_01.png" id="7_g6mth"]
 [ext_resource type="Curve" uid="uid://cab5myl8duqct" path="res://assets/voxel_terrain/terrain_curve.tres" id="11_r2115"]
 [ext_resource type="Material" uid="uid://r43l2vdf4eto" path="res://assets/voxel_terrain/transvoxel_terrain_material.tres" id="12_3s1wn"]
 [ext_resource type="PackedScene" uid="uid://dwdapt6r0tqot" path="res://scenes/menu.tscn" id="12_q1b7v"]
-[ext_resource type="PackedScene" uid="uid://70hdnpxrk8mr" path="res://scenes/gui.tscn" id="12_yrqup"]
+[ext_resource type="PackedScene" uid="uid://70hdnpxrk8mr" path="res://scenes/gui/gui.tscn" id="12_yrqup"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_im5on"]
 albedo_texture = ExtResource("4_isu3i")

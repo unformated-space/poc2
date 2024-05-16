@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://cdahw7dke4o6m"]
+
+[ext_resource type="PackedScene" uid="uid://dogcqix21uuwf" path="res://assets/weapons_kenney/hand.tscn" id="1_aqwfh"]
+[ext_resource type="PackedScene" uid="uid://c732mixw6gb5g" path="res://scenes/tool_mods/voxel_tools_mods.tscn" id="2_5xvm3"]
+[ext_resource type="PackedScene" uid="uid://byxr0bj1egxxl" path="res://assets/weapons_kenney/blasterG.glb" id="2_foexc"]
+[ext_resource type="Texture2D" uid="uid://b81jihw0g8dld" path="res://assets/ui-test/1.png" id="2_pafja"]
+[ext_resource type="PackedScene" uid="uid://bhlphqo3gmvno" path="res://assets/weapons_kenney/blasterK.glb" id="3_l4gg7"]
+[ext_resource type="Script" path="res://scripts/tools/voxel_tool.gd" id="4_fpv7h"]
+[ext_resource type="Texture2D" uid="uid://cdn3va48j8kt3" path="res://assets/ui-test/2.png" id="4_i8atp"]
+[ext_resource type="Texture2D" uid="uid://kle38q5vk5ec" path="res://assets/ui-test/3.png" id="6_iaqwr"]
+[ext_resource type="Script" path="res://scripts/tools/blocl_tool.gd" id="7_04ls2"]
+[ext_resource type="PackedScene" uid="uid://ce645bb5afm2e" path="res://scenes/tool_mods/blocks_forms.tscn" id="9_8d8ad"]
+
+[node name="ToolLib" type="Node3D"]
+
+[node name="Hand" parent="." instance=ExtResource("1_aqwfh")]
+
+[node name="thumb" type="TextureRect" parent="Hand"]
+visible = false
+anchors_preset = -1
+anchor_right = 0.033
+anchor_bottom = 0.059
+offset_right = -23.36
+offset_bottom = -23.72
+texture = ExtResource("2_pafja")
+stretch_mode = 2
+
+[node name="voxel_tool" parent="." instance=ExtResource("2_foexc")]
+visible = false
+script = ExtResource("4_fpv7h")
+tool_name = "Voxel Tool"
+mod_library = ExtResource("2_5xvm3")
+
+[node name="thumb" type="TextureRect" parent="voxel_tool"]
+visible = false
+anchors_preset = -1
+anchor_right = 0.033
+anchor_bottom = 0.059
+offset_right = 0.639999
+offset_bottom = 0.279995
+texture = ExtResource("4_i8atp")
+stretch_mode = 2
+
+[node name="block_tool" parent="." instance=ExtResource("3_l4gg7")]
+script = ExtResource("7_04ls2")
+tool_name = "Blook Tool"
+mod_library = ExtResource("9_8d8ad")
+
+[node name="thumb" type="TextureRect" parent="block_tool"]
+visible = false
+anchors_preset = -1
+anchor_right = 0.033
+anchor_bottom = 0.059
+offset_right = 0.639999
+offset_bottom = 0.279995
+texture = ExtResource("6_iaqwr")
+stretch_mode = 2
+
+[editable path="voxel_tool"]
+[editable path="block_tool"]

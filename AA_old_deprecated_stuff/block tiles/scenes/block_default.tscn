@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://budtrg555tmre"]
+
+[ext_resource type="Texture2D" uid="uid://wmg8tmxrisjs" path="res://assets/textures/kenney_prototype_textures/purple/texture_12.png" id="1_g0ikw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gt81l"]
+albedo_texture = ExtResource("1_g0ikw")
+
+[sub_resource type="BoxMesh" id="BoxMesh_g2cuv"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q0fdq"]
+points = PackedVector3Array(0.1, 0.1, 0.1, 0.1, 0.1, -0.1, -0.1, 0.1, 0.1, 0.1, -0.1, 0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1)
+
+[node name="default" type="Node3D"]
+
+[node name="default" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_gt81l")
+mesh = SubResource("BoxMesh_g2cuv")
+
+[node name="default" type="StaticBody3D" parent="default"]
+
+[node name="default" type="CollisionShape3D" parent="default/default"]
+shape = SubResource("ConvexPolygonShape3D_q0fdq")

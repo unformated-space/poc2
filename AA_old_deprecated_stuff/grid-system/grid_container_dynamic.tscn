@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b521go35c3tu3"]
+
+[ext_resource type="Script" path="res://AA_old_deprecated_stuff/grid-system/grid_container.gd" id="1_l0n3u"]
+[ext_resource type="PackedScene" uid="uid://djml1ve0atnul" path="res://AA_old_deprecated_stuff/grid-system/base_dynamic.tscn" id="2_556nq"]
+
+[node name="grid_container" type="MultiMeshInstance3D"]
+script = ExtResource("1_l0n3u")
+
+[node name="StaticBody3D" parent="." instance=ExtResource("2_556nq")]

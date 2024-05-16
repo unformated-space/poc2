@@ -4,7 +4,7 @@ extends Node3D
 
 
 func _process(_delta):
-	if Input.is_action_pressed("ui_cancel") && !Config.menu_open:
+	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 	##label.set_tex wx wawxxt("FPS "+str(Engine.get_frames_per_second()))
 	#

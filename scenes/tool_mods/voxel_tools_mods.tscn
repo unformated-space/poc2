@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://c732mixw6gb5g"]
+
+[ext_resource type="Texture2D" uid="uid://c1nuwjsd1xdl7" path="res://assets/ui-test/ared.png" id="1_mvrn7"]
+[ext_resource type="Texture2D" uid="uid://5hh84q0v5xx4" path="res://assets/ui-test/bred.png" id="2_w0w4e"]
+
+[node name="VoxelHandsMods" type="Node3D"]
+
+[node name="add" type="Node3D" parent="."]
+
+[node name="thumb" type="TextureRect" parent="add"]
+anchors_preset = -1
+anchor_right = 0.033
+anchor_bottom = 0.059
+offset_right = -23.36
+offset_bottom = -23.72
+texture = ExtResource("1_mvrn7")
+
+[node name="remove" type="Node3D" parent="."]
+
+[node name="thumb" type="TextureRect" parent="remove"]
+anchors_preset = -1
+anchor_right = 0.033
+anchor_bottom = 0.059
+offset_right = -23.36
+offset_bottom = -23.72
+texture = ExtResource("2_w0w4e")

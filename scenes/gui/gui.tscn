@@ -1,0 +1,159 @@
+[gd_scene load_steps=3 format=3 uid="uid://70hdnpxrk8mr"]
+
+[ext_resource type="Script" path="res://scripts/uiControl.gd" id="1_77yke"]
+[ext_resource type="Script" path="res://scripts/ui_tool_controller.gd" id="2_eik0d"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_77yke")
+metadata/_edit_vertical_guides_ = [0.0]
+metadata/_edit_horizontal_guides_ = [1080.0, 563.0]
+
+[node name="chatWindow" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.709
+anchor_right = 0.417
+anchor_bottom = 1.0
+offset_top = 0.279968
+offset_right = 0.359924
+offset_bottom = 1.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="chatWindow"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="chatWindow/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="chatWindow/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="chatLog" type="RichTextLabel" parent="chatWindow/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 17
+text = "Create Node
+Resize Control \"RichTextLabel\" to (356, 217)
+Move CanvasItem \"Control\" to (30, 52)
+Scene Undo: Move CanvasItem \"Control\" to (30, 52)
+Create Node
+Resize Control \"RichTextLabel\" to (356, 217)
+Move CanvasItem \"Control\" to (30, 52)
+Scene Undo: Move CanvasItem \"Control\" to (30, 52)
+Move CanvasItem \"RichTextLabel\" to (49, 816)
+Resize Control \"RichTextLabel\" to (578, 279)"
+scroll_following = true
+metadata/_edit_use_anchors_ = true
+
+[node name="HSeparator" type="HSeparator" parent="chatWindow/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="chatWindow/VBoxContainer"]
+layout_mode = 2
+
+[node name="chatInput" type="LineEdit" parent="chatWindow/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="chatSend" type="Button" parent="chatWindow/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Send
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.813
+anchor_top = 0.027
+anchor_right = 0.99
+anchor_bottom = 0.272
+offset_left = 0.039917
+offset_top = -0.16
+offset_right = 0.199829
+offset_bottom = 0.23999
+theme_override_colors/default_color = Color(0.870588, 0, 0, 1)
+text = "Controls:
+WASD+mouse
+shift: sprint
+x: toggle jetpack
+space + ctrl: up and down
+z: toggle dampeners jetpack
+CammeraControl
+v: toggle camera
+tab mantenido: freelook
+double tab center cammera only third person
+"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 40.0
+offset_right = 199.0
+offset_bottom = 63.0
+text = "ss"
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_eik0d")
+
+[node name="tool_list" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.007
+anchor_top = 0.427
+anchor_right = 0.04
+anchor_bottom = 0.612
+offset_left = 12.72
+offset_top = 443.92
+offset_right = 75.4
+offset_bottom = 636.52
+
+[node name="tool_mod1" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.049
+anchor_top = 0.427
+anchor_right = 0.082
+anchor_bottom = 0.612
+offset_left = 92.04
+offset_top = 443.92
+offset_right = 154.72
+offset_bottom = 636.52
+
+[node name="tool_list_back" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 13.225
+anchor_right = 1.925
+anchor_bottom = 14.85
+color = Color(0.196078, 1, 1, 1)
+
+[node name="mod_list_1_back" type="ColorRect" parent="Control"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.525
+anchor_top = 13.175
+anchor_right = 4.0
+anchor_bottom = 14.85
+offset_bottom = -2.0
+color = Color(0.196078, 1, 1, 1)
