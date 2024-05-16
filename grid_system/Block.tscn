@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://oq0qipop3fld"]
+
+[ext_resource type="Script" path="res://grid_system/Block.gd" id="1_gy37b"]
+[ext_resource type="Texture2D" uid="uid://bd5moswvqp8uh" path="res://assets/ui-test/b.png" id="2_ph5h1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0l87s"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8biw3"]
+margin = 0.0
+points = PackedVector3Array(0.25, 0.25, 0.25, 0.25, 0.25, -0.25, -0.25, 0.25, 0.25, 0.25, -0.25, 0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25)
+
+[node name="Block" type="Area3D" node_paths=PackedStringArray("mesh_instance_3d")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_gy37b")
+mesh_instance_3d = NodePath("mesh")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("BoxMesh_0l87s")
+skeleton = NodePath("../..")
+
+[node name="collision" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_8biw3")
+
+[node name="thumb" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_right = 0.033
+anchor_bottom = 0.059
+offset_right = -23.36
+offset_bottom = -23.72
+texture = ExtResource("2_ph5h1")
