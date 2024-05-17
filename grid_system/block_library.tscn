@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://buubn5vceg30w"]
+
+[ext_resource type="PackedScene" uid="uid://oq0qipop3fld" path="res://grid_system/Block.tscn" id="1_cggo5"]
+[ext_resource type="PackedScene" uid="uid://dfngw160o0k8m" path="res://grid_system/block_library/seat.tscn" id="2_a8nsq"]
+
+[node name="BlockLibrary" type="Node3D"]
+
+[node name="Block" parent="." instance=ExtResource("1_cggo5")]
+
+[node name="Seat" parent="." instance=ExtResource("2_a8nsq")]
+
+[editable path="Block"]
+[editable path="Seat"]

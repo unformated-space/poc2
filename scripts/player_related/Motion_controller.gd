@@ -87,14 +87,8 @@ func align_to_gravity_direction(delta):
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("move_fwd"):
-		move_fwd = true
-	elif event.is_action_released("move_fwd"):
-		move_fwd = false
-	if event.is_action_pressed("move_back"):
-		move_back = true
-	elif event.is_action_released("move_back"):
-		move_back = false
+	move_fwd = event.is_action_pressed("move_fwd")
+	move_back = event.is_action_pressed("move_back")
 	if event.is_action_pressed("move_left"):
 		move_left = true
 	elif event.is_action_released("move_left"):

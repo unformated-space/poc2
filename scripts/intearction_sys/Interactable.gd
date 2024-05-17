@@ -44,7 +44,6 @@ func report():
 	DebugConsole.log("resistance is futile")
 
 func show_menu(item_map):
-	Config.menu_open=true
 	var node_scene = load("res://scenes/control.tscn").instantiate()
 	add_child(node_scene)
 	menu = node_scene.get_node("menu")
@@ -65,12 +64,10 @@ func show_menu(item_map):
 	menu.connect("index_pressed", _onPress)
 	
 func _onPress(id_pressed):
-	Config.menu_open=false
 	DebugConsole.log(id_pressed)
 
 
 func menu_hide():
 	DebugConsole.log ("me cerre")
-	Config.menu_open=false
  
 

@@ -64,3 +64,4 @@ func _process(_delta):
 				#DebugConsole.log("onCreate"+str(new_position))
 				block_instance.initial_hit_normal = new_position
 				_grids.add_child(block_instance)
+

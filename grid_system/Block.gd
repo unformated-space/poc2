@@ -76,6 +76,7 @@ func snapped_to_grid(position: Vector3) -> Vector3:
 		floor(position.y / grid_size.y) * grid_size.y,
 		floor(position.z / grid_size.z) * grid_size.z
 	)
+	
 func add_block(hit_normal,hit_point,collided_object):
 	var grid_container = get_parent()
 	var grid_size =Vector3(0.5, 0.5, 0.5) #en metros

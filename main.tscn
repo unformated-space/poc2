@@ -77,6 +77,16 @@ mesh_optimization_enabled = true
 
 [node name="world" type="Node3D"]
 
+[node name="GUI" parent="." instance=ExtResource("12_yrqup")]
+
+[node name="speed" type="Label" parent="GUI"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 81.0
+offset_right = 199.0
+offset_bottom = 104.0
+text = "ss"
+
 [node name="EnvStuff" type="Node3D" parent="."]
 
 [node name="PurupleStaticBox2" type="CSGBox3D" parent="EnvStuff"]
@@ -180,16 +190,6 @@ shape = SubResource("ConvexPolygonShape3D_7smqk")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="RandomStuffTest/OrangeBlock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16831, -2.15433)
 shape = SubResource("ConvexPolygonShape3D_7smqk")
-
-[node name="GUI" parent="." instance=ExtResource("12_yrqup")]
-
-[node name="speed" type="Label" parent="GUI"]
-layout_mode = 0
-offset_left = 45.0
-offset_top = 81.0
-offset_right = 199.0
-offset_bottom = 104.0
-text = "ss"
 
 [node name="VoxelLodTerrain" type="VoxelLodTerrain" parent="."]
 generator = SubResource("VoxelGeneratorNoise2D_cfags")

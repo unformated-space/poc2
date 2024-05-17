@@ -1,31 +1,39 @@
 extends Node
-@onready var weapon_library = $WeaponLib
+@onready var tool_library = $WeaponLib
 
 
-#var current_weapon :=0
-#var weapon_ammount := 0
-#var last_weapon = 0
-#var weapon
-#var wheel_timer := 0.0
-#var move_direction := ""
-#var menu_actual = 0
-#var menu : PopupMenu
-#var weapon_lib
-## Called when the node enters the scene tree for the first time.
-#func _ready():
-	#weapon_ammount=weapon_library.get_child_count()
-#
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#
-	#if last_weapon != current_weapon:
-		#weapon= weapon_library.get_child(last_weapon)
-		#weapon.visible=false
-		#weapon= weapon_library.get_child(current_weapon)
-		#weapon.visible=true
-		#last_weapon=current_weapon
-		#
-#
+var current_weapon :=0
+var weapon_ammount := 0
+var last_weapon = 0
+var weapon
+var wheel_timer := 0.0
+var move_direction := ""
+var menu_actual = 0
+var menu : PopupMenu
+var weapon_lib
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	weapon_ammount=tool_library.get_child_count()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+
+	if last_weapon != Globals.active_item:
+		weapon= tool_library.get_child(last_weapon)
+		weapon.visible=false
+		weapon= tool_library.get_child(Globals.active_item)
+		weapon.visible=true
+		last_weapon=Globals.active_item
+	if tool_library.get_child(Globals.active_item).name == "block_tool":
+		var mod_library= tool_library.get_child(Globals.active_item).mod_library
+		var mod_library_instance = mod_library.instantiate()
+		var mod = mod_library_instance.get_child(Globals.active_mod)
+		var preview = tool_library.get_child(Globals.active_item).get_node("block_preview")
+		debug_console.log(mod.get_script())
+		#mod.get_child(0).set_script(false)
+		#preview.add_child(mod)
+		
+
 	#if (wheel_timer > 0.0):
 		#wheel_timer += get_process_delta_time()
 	#if (wheel_timer > 0.5):

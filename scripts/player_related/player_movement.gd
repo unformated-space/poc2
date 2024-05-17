@@ -1,14 +1,12 @@
 extends Movement_controller
 
-
-
 var velocity := Vector3.ZERO
 var crouching_speed = 4.0
 var sprint_speed = 12.0
 var normal_speed = 7.0
 var jetpack := false
 var player_is_grounded: bool = true
-var max_slope_angle_degrees := 45
+var max_slope_angle_degrees := 80
 var physics_state
 
 

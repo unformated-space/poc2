@@ -14,6 +14,7 @@
 [node name="ToolLib" type="Node3D"]
 
 [node name="Hand" parent="." instance=ExtResource("1_aqwfh")]
+visible = false
 
 [node name="thumb" type="TextureRect" parent="Hand"]
 visible = false
@@ -26,7 +27,6 @@ texture = ExtResource("2_pafja")
 stretch_mode = 2
 
 [node name="voxel_tool" parent="." instance=ExtResource("2_foexc")]
-visible = false
 script = ExtResource("4_fpv7h")
 tool_name = "Voxel Tool"
 mod_library = ExtResource("2_5xvm3")
@@ -42,9 +42,13 @@ texture = ExtResource("4_i8atp")
 stretch_mode = 2
 
 [node name="block_tool" parent="." instance=ExtResource("3_l4gg7")]
+visible = false
 script = ExtResource("7_04ls2")
 tool_name = "Blook Tool"
 mod_library = ExtResource("9_8d8ad")
+
+[node name="block_preview" type="Node3D" parent="block_tool"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
 [node name="thumb" type="TextureRect" parent="block_tool"]
 visible = false

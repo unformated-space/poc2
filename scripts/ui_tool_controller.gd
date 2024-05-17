@@ -18,7 +18,8 @@ var tool_lib = preload("res://scenes/tool_lib.tscn").instantiate()
 @onready var tool_mod_1 = $tool_mod1
 @onready var tool_list_back = $tool_list_back
 @onready var mod_list_1_back = $mod_list_1_back
-
+var mod_lib
+var mod_options
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
@@ -28,14 +29,12 @@ func _ready():
 		thumb.visible= true
 		thumb.name=tool.tool_name
 		thumb.reparent(tool_list)
-		print (tool_list.get_children())
-		print(tool_list.get_child(1))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var mod_options
-	var mod_lib
+
+
 	if Globals.wheel_selected == 0:
 		tool_list_back.visible=true
 		mod_list_1_back.visible=false
@@ -58,14 +57,8 @@ func _process(delta):
 		mod_list_1_back.visible=true
 		if mod_lib:
 			ammount = mod_options.get_child_count()
+			update_ui_wheels( Globals.active_mod)
 			Globals.active_mod = current
-			update_ui_wheels( Globals.active_item)
-	if Input.is_action_just_pressed("mouse_down"):
-		move_direction = "fwd"
-		wheel_timer +=0.1
-	if Input.is_action_just_pressed("mouse_up"):
-		move_direction = "dwn"
-		wheel_timer +=0.1
 	if (wheel_timer > 0.0):
 		wheel_timer += get_process_delta_time()
 	if (wheel_timer > 0.5):
@@ -91,8 +84,13 @@ func _unhandled_input(event):
 		Globals.wheel_selected = 0
 	if event.is_action_released("item_bar_2", true):
 		Globals.wheel_selected = 1
-	
-
+	if event.is_action_released("mouse_up", true):
+		move_direction = "dwn"
+		wheel_timer +=0.1
+	if event.is_action_released("mouse_down", true):
+		move_direction = "fwd"
+		wheel_timer +=0.1
+		
 func update_ui_wheels (current_tool):
 	var wheel
 	if Globals.wheel_selected == 0:
