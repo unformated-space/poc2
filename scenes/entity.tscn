@@ -42,3 +42,8 @@ script = ExtResource("4_5w134")
 
 [node name="WeaponLib" parent="Player/right_hand" instance=ExtResource("5_u5crc")]
 transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, -0.190031, 0, -0.117317)
+
+[node name="test" type="Node3D" parent="Player/right_hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.587873, 0.171746, -2.62213)
+
+[editable path="Player/CameraController"]

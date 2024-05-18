@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfngw160o0k8m"]
 
-[ext_resource type="Script" path="res://grid_system/seat.gd" id="1_4xnyi"]
+[ext_resource type="Script" path="res://grid_system/block_library/seat.gd" id="1_la4xp"]
 [ext_resource type="Texture2D" uid="uid://bbdi7jx3gm07m" path="res://assets/ui-test/chair.jpeg" id="2_iquy6"]
 [ext_resource type="Texture2D" uid="uid://b417i8fom35vm" path="res://assets/ui-test/a.png" id="3_vjhcc"]
 
@@ -14,10 +14,12 @@ size = Vector3(0.5, 0.5, 0.5)
 margin = 0.0
 points = PackedVector3Array(0.25, 0.25, 0.25, 0.25, 0.25, -0.25, -0.25, 0.25, 0.25, 0.25, -0.25, 0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25)
 
-[node name="Seat" type="Area3D"]
+[node name="Seat" type="Area3D" node_paths=PackedStringArray("mesh_instance_3d")]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_4xnyi")
+script = ExtResource("1_la4xp")
+mesh_instance_3d = NodePath("mesh")
+interact_prompt = "subir"
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 layers = 2

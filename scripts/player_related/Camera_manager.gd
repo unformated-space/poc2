@@ -1,9 +1,9 @@
 extends Node3D
 class_name Camera_manager
-
-@onready var spring_arm_3d: SpringArm3D = $SpringArm3D
+@onready var spring_arm_3d = $pivot/SpringArm3D
 @onready var camera_3d: Camera3D = $SpringArm3D/Camera3D
 @onready var camera_controller = $"."
+@onready var pivot = $pivot
 
 @export var camera_angle_y: float = 0.0
 @export var camera_angle_z: float = 0.0
@@ -51,7 +51,7 @@ func _process (delta):
 		in_first_person = not in_first_person
 	if free_look_once:
 		if (switch_view_delta_key > 0.0 && switch_view_delta_key < 0.25) || in_first_person	:
-			origin_camera_x = spring_arm_3d.rotation.x
+			origin_camera_x = pivot.rotation.x
 			switch_view_delta_key = 0.0
 			lerp_factor = 0.0
 			centering_camera = true
@@ -67,7 +67,7 @@ func _process (delta):
 			lerp_factor += delta * Config.lerpSpeed
 			#camera_controller.rotation.x = lerp(camera_controller.rotation.x, origin_camera_x, lerp_factor*1.5)
 			camera_controller.rotation.y = lerp(camera_controller.rotation.y, 0.0, lerp_factor)
-			spring_arm_3d.rotation.z = lerp(spring_arm_3d.rotation.z, 0.0, lerp_factor)
+			pivot.rotation.z = lerp(pivot.rotation.z, 0.0, lerp_factor)
 			if (lerp_factor >= 1.0):
 				centering_camera = false
 	# TODO: fix centering the camera to the original x position before freelooking, it only works once
@@ -84,11 +84,11 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		if free_looking:
 			camera_controller.rotate_y (-deg_to_rad(event.relative.x * Config.mouseSens))
-			spring_arm_3d.rotate_x (-deg_to_rad(event.relative.y * (Config.mouseSens*0.5)))
-			spring_arm_3d.rotation.x = clamp (spring_arm_3d.rotation.x, deg_to_rad(-45),deg_to_rad(80))
+			pivot.rotate_x (-deg_to_rad(event.relative.y * (Config.mouseSens*0.5)))
+			pivot.rotation.x = clamp (pivot.rotation.x, deg_to_rad(-45),deg_to_rad(80))
 			if in_first_person:
 				camera_controller.rotation.y = clamp (camera_controller.rotation.y, deg_to_rad(-120),deg_to_rad(120))
-				spring_arm_3d.rotation.z = -deg_to_rad(camera_controller.rotation.y * free_look_tilt)
+				pivot.rotation.z = -deg_to_rad(camera_controller.rotation.y * free_look_tilt)
 		else:
 			camera_angle_y = (-deg_to_rad(event.relative.x * (Config.mouseSens*0.5)))
 			camera_angle_z = (-deg_to_rad(event.relative.y * (Config.mouseSens*0.5)))
@@ -96,8 +96,8 @@ func _input(event):
 		if in_first_person || (not in_first_person&&free_looking):
 			#camera_controller.rotate_y (-deg_to_rad(event.relative.x * (Config.mouseSens*0.5)))
 			#camera_controller.rotation.y = clamp (camera_controller.rotation.y, deg_to_rad(-45),deg_to_rad(80))
-			spring_arm_3d.rotate_x (-deg_to_rad(event.relative.y * (Config.mouseSens*0.5)))
-			spring_arm_3d.rotation.x = clamp (spring_arm_3d.rotation.x, deg_to_rad(-45),deg_to_rad(80))
+			pivot.rotate_x (-deg_to_rad(event.relative.y * (Config.mouseSens*0.5)))
+			pivot.rotation.x = clamp (pivot.rotation.x, deg_to_rad(-45),deg_to_rad(80))
 
 	if event is InputEventMouseButton:
 		if not in_first_person && free_looking:

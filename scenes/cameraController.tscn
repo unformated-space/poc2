@@ -9,38 +9,50 @@ script = ExtResource("1_ceegu")
 
 [node name="pivot" type="Node3D" parent="."]
 
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
-spring_length = 0.0
-
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
-
-[node name="interact_raycast" type="RayCast3D" parent="SpringArm3D/Camera3D"]
+[node name="interact_raycast" type="RayCast3D" parent="pivot"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -3, 0)
 collision_mask = 2
 collide_with_areas = true
 script = ExtResource("2_0an43")
 
-[node name="interact_label" type="Label" parent="SpringArm3D/Camera3D/interact_raycast"]
+[node name="Node2D" type="Control" parent="pivot/interact_raycast"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.183, 0.183)
+
+[node name="crosshair" type="Sprite2D" parent="pivot/interact_raycast/Node2D"]
+texture = ExtResource("2_ptyax")
+
+[node name="interact_label" type="Label" parent="pivot/interact_raycast"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -93.0
-offset_top = -3.0
+offset_top = 3.0
 offset_right = 94.0
-offset_bottom = 57.0
+offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "[E] Pickup"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="crosshair" type="Sprite2D" parent="SpringArm3D/Camera3D/interact_raycast/interact_label"]
-position = Vector2(93, 4)
-scale = Vector2(0.282, 0.282)
-texture = ExtResource("2_ptyax")
+[node name="raycastEnd" type="Node3D" parent="pivot/interact_raycast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
-[node name="VoxelViewer" type="VoxelViewer" parent="SpringArm3D"]
+[node name="SpringArm3D" type="SpringArm3D" parent="pivot"]
+spring_length = 0.0
+
+[node name="Camera3D" type="Camera3D" parent="pivot/SpringArm3D"]
+
+[node name="VoxelViewer" type="VoxelViewer" parent="pivot/SpringArm3D"]
 view_distance = 50

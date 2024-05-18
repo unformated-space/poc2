@@ -2,15 +2,14 @@ extends RayCast3D
 class_name Interactor
 
 # TODO: fix this paths of hell (../../../Player)
-@onready var ignore_this := get_node("../../../../../Player")
+@onready var ignore_this := get_node("/root/world/Entity/Player")
+@onready var raycast= get_node("/root/world/Entity/Player/CameraController/pivot/interact_raycast/raycastEnd")
 @onready var interact_label = $interact_label
-
 var focused_object
-
+var block_path =  ["res://grid_system/Block.tscn", "res://grid_system/block_library/seat.tscn"]
 func _ready():
 	add_exception(ignore_this)
 	pass # Replace with function body.
-
 
 func _process(_delta):
 	var collided_object = get_collider()
@@ -50,18 +49,28 @@ func _process(_delta):
 				#collided_object._interact(get_collision_point())
 				print ("collided_object "+str(collided_object.name))
 				collided_object._interact_left(get_collision_normal(),get_collision_point(), collided_object)
+		elif collided_object and collided_object.get_class()=="VoxelLodTerrain" and Input.is_action_just_pressed("mouse_right_click"):
+			var _grids = get_node("/root/world/_grids")
+			var block_instance = load(block_path[Globals.active_item]).instantiate()
+			var forward_direction = raycast.global_transform.basis.z.normalized() * Vector3(0,0 ,1)
+			var new_position = get_collision_point ( )  + forward_direction
+			block_instance.initial_object = collided_object
+			block_instance.initial_hit_normal = new_position
+			_grids.add_child(block_instance)
 	else:
 		## TODO: mover esto a gridd
 		if Input.is_action_just_pressed("mouse_right_click"):
-			var block_in_hand = true #basarse en la ui y eso
-			if block_in_hand:
-				var _grids = get_node("/root/world/_grids")
-				var block_instance = load("res://grid_system/Block.tscn").instantiate()
-				var forward_direction = ignore_this.global_transform.basis.z.normalized() * -3
-				var new_position = ignore_this.global_position  + forward_direction * 1.0
-				# Calcular la nueva posición delante de la cámara
-				#DebugConsole.log("player pos"+str(global_position))
-				#DebugConsole.log("onCreate"+str(new_position))
-				block_instance.initial_hit_normal = new_position
-				_grids.add_child(block_instance)
-
+			#add_new_grid(null)
+			var _grids = get_node("/root/world/_grids")
+			var block_instance = load(block_path[Globals.active_item]).instantiate()
+			var forward_direction = raycast.global_transform.basis.z.normalized() * Vector3(0,0 ,1)
+			var new_position = raycast.global_position  + forward_direction
+			block_instance.initial_hit_normal = new_position
+			_grids.add_child(block_instance)
+			
+	if Input.is_action_just_released("item_bar_1"):
+		Globals.active_item = 0
+	if Input.is_action_just_released("item_bar_2"):
+		Globals.active_item = 1
+	if Input.is_action_just_released("item_bar_3"):
+		Globals.active_item = 2
