@@ -1,9 +1,10 @@
 extends Node3D
 class_name Camera_manager
 @onready var spring_arm_3d = $pivot/SpringArm3D
-@onready var camera_3d: Camera3D = $SpringArm3D/Camera3D
 @onready var camera_controller = $"."
 @onready var pivot = $pivot
+@onready var camera_3d = $pivot/SpringArm3D/Camera3D
+
 
 @export var camera_angle_y: float = 0.0
 @export var camera_angle_z: float = 0.0
@@ -22,7 +23,7 @@ var switch_view : bool = false
 var free_look : bool = false
 var free_look_once : bool = false
 
-@onready var text: RichTextLabel = get_node("../../../GUI/log")
+
 
 func _ready():
 	

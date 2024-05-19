@@ -27,7 +27,7 @@ func _process(delta):
 func block_added(id):
 	if id.name.begins_with("area"):
 		grid.append(id)
-		add_to_group(grid_UUID)
+		id.add_to_group(grid_UUID)
 		#DebugConsole.log(grid)
 	#for enemigo in get_tree().get_nodes_in_group(grid_UUID):
 		#DebugConsole.log("the friends "+ str(enemigo))

@@ -138,7 +138,7 @@ skeleton = NodePath("../../StaticBody3D2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnvStuff/StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_br5tw")
 
-[node name="Entity" parent="." instance=ExtResource("1_dv0ft")]
+[node name="Player" parent="." instance=ExtResource("1_dv0ft")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.288, 1.36561)
 
 [node name="RandomStuffTest" type="Node3D" parent="."]

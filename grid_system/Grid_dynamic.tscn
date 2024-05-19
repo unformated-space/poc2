@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://grid_system/Grid.gd" id="1_8t8jv"]
 
 [node name="Grid" type="RigidBody3D"]
+linear_damp = 2.0
 script = ExtResource("1_8t8jv")

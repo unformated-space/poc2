@@ -15,11 +15,10 @@ albedo_texture = ExtResource("2_7qve6")
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Player" type="RigidBody3D" parent="." node_paths=PackedStringArray("camera_controller")]
+[node name="Player" type="RigidBody3D" parent="." node_paths=PackedStringArray("cammera_scene")]
 mass = 75.0
-linear_damp = 37.647
 script = ExtResource("1_bqh38")
-camera_controller = NodePath("CameraController")
+cammera_scene = NodePath("CameraController")
 
 [node name="CameraController" parent="Player" instance=ExtResource("3_xtlsu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684302, -0.352048)

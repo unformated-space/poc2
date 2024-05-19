@@ -6,8 +6,8 @@ extends Interactable
 @export var coloreable : bool
 @export var thumbnail : Resource
 #@onready var grid_container = $"."
-
-@onready var test_block = get_node("/root/world/Entity/Player/right_hand/test/Block")
+var type =  "armor"
+#@onready var test_block = get_node("/root/world/Entity/Player/right_hand/test/Block")
 
 var block_path =  ["res://grid_system/Block.tscn", "res://grid_system/block_library/seat.tscn"]
 var initial_hit_normal : Vector3 =  Vector3.ZERO
