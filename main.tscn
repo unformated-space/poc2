@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bk0hptkeov7eq"]
+[gd_scene load_steps=33 format=3 uid="uid://bk0hptkeov7eq"]
 
 [ext_resource type="PackedScene" uid="uid://d3675nehxlohi" path="res://scenes/entity.tscn" id="1_dv0ft"]
 [ext_resource type="Texture2D" uid="uid://cgfitu57oeqa7" path="res://assets/kloppenheim_06_puresky_4k.hdr" id="3_aayaa"]
@@ -8,10 +8,12 @@
 [ext_resource type="Script" path="res://scripts/random_stuff_test/orangeBlock.gd" id="7_44b1g"]
 [ext_resource type="Script" path="res://scripts/random_stuff_test/GreenBlock.gd" id="7_edy68"]
 [ext_resource type="Texture2D" uid="uid://ibksedtyajll" path="res://assets/textures/kenney_prototype_textures/orange/texture_01.png" id="7_g6mth"]
+[ext_resource type="Script" path="res://scripts/intearction_sys/Interactable.gd" id="9_olvju"]
 [ext_resource type="Curve" uid="uid://cab5myl8duqct" path="res://assets/voxel_terrain/terrain_curve.tres" id="11_r2115"]
 [ext_resource type="Material" uid="uid://r43l2vdf4eto" path="res://assets/voxel_terrain/transvoxel_terrain_material.tres" id="12_3s1wn"]
 [ext_resource type="PackedScene" uid="uid://dwdapt6r0tqot" path="res://scenes/menu.tscn" id="12_q1b7v"]
 [ext_resource type="PackedScene" uid="uid://70hdnpxrk8mr" path="res://scenes/gui/gui.tscn" id="12_yrqup"]
+[ext_resource type="Script" path="res://grid_system/grids_manager.gd" id="14_8m2gi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_im5on"]
 albedo_texture = ExtResource("4_isu3i")
@@ -160,7 +162,6 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("7_edy68")
 mesh_instance_3d = NodePath("MeshInstance3D")
-interact_prompt = "Sarasear"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RandomStuffTest/GreenBlock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16831, -3.15433)
@@ -171,6 +172,11 @@ surface_material_override/0 = SubResource("ShaderMaterial_nhpti")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RandomStuffTest/GreenBlock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16831, -3.15433)
 shape = SubResource("ConvexPolygonShape3D_7smqk")
+
+[node name="Interactable" type="Node3D" parent="RandomStuffTest/GreenBlock" node_paths=PackedStringArray("mesh_instance_3d")]
+script = ExtResource("9_olvju")
+mesh_instance_3d = NodePath("../MeshInstance3D")
+interact_prompt = "sarasear"
 
 [node name="OrangeBlock" type="RigidBody3D" parent="RandomStuffTest" node_paths=PackedStringArray("mesh_instance_3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.76605, -1, 6.96332)
@@ -209,3 +215,4 @@ streaming_system = 1
 [node name="menu" parent="." instance=ExtResource("12_q1b7v")]
 
 [node name="_grids" type="Node3D" parent="."]
+script = ExtResource("14_8m2gi")

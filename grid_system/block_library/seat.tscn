@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfngw160o0k8m"]
+[gd_scene load_steps=9 format=3 uid="uid://dfngw160o0k8m"]
 
 [ext_resource type="Script" path="res://grid_system/block_library/seat.gd" id="1_la4xp"]
 [ext_resource type="Texture2D" uid="uid://bbdi7jx3gm07m" path="res://assets/ui-test/chair.jpeg" id="2_iquy6"]
 [ext_resource type="Texture2D" uid="uid://b417i8fom35vm" path="res://assets/ui-test/a.png" id="3_vjhcc"]
 [ext_resource type="PackedScene" uid="uid://bx3445d12qv84" path="res://scenes/cameraController.tscn" id="4_btfrd"]
+[ext_resource type="Script" path="res://scripts/intearction_sys/Interactable.gd" id="5_1mqk7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mle00"]
 albedo_texture = ExtResource("2_iquy6")
@@ -20,9 +21,6 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_la4xp")
 cammera_scene = NodePath("CameraController")
-mesh_instance_3d = Object(MeshInstance3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"layers":2,"sorting_offset":0.0,"sorting_use_aabb_center":true,"material_override":SubResource("StandardMaterial3D_mle00"),"material_overlay":null,"transparency":0.0,"cast_shadow":1,"extra_cull_margin":0.0,"custom_aabb":AABB(0, 0, 0, 0, 0, 0),"lod_bias":1.0,"ignore_occlusion_culling":false,"gi_mode":1,"gi_lightmap_scale":0,"visibility_range_begin":0.0,"visibility_range_begin_margin":0.0,"visibility_range_end":0.0,"visibility_range_end_margin":0.0,"visibility_range_fade_mode":0,"mesh":SubResource("BoxMesh_0l87s"),"skin":null,"skeleton":NodePath("../.."),"surface_material_override/0":null,"script":null)
-
-interact_prompt = "subir"
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 layers = 2
@@ -40,5 +38,9 @@ texture = ExtResource("3_vjhcc")
 
 [node name="CameraController" parent="." instance=ExtResource("4_btfrd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Interactable" type="Node3D" parent="." node_paths=PackedStringArray("mesh_instance_3d")]
+script = ExtResource("5_1mqk7")
+mesh_instance_3d = NodePath("../mesh")
 
 [editable path="CameraController"]

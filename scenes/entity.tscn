@@ -23,6 +23,9 @@ cammera_scene = NodePath("CameraController")
 [node name="CameraController" parent="Player" instance=ExtResource("3_xtlsu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684302, -0.352048)
 
+[node name="Camera3D" parent="Player/CameraController/pivot/SpringArm3D" index="0"]
+current = true
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 material_override = SubResource("StandardMaterial3D_85ue2")
 mesh = SubResource("CapsuleMesh_ub6o2")

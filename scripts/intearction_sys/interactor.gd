@@ -6,20 +6,23 @@ class_name Interactor
 @onready var raycast= get_node("/root/world/Player/Player/CameraController/pivot/interact_raycast/raycastEnd")
 @onready var interact_label = $interact_label
 var focused_object
+var collided_object 
 var block_path =  ["res://grid_system/Block.tscn", "res://grid_system/block_library/seat.tscn"]
 func _ready():
 	add_exception(ignore_this)
 	pass # Replace with function body.
 
 func _process(_delta):
-	var collided_object = get_collider()
-	#DebugConsole.log(collided_object)
+	var collided = get_collider()
+	#DebugConsole.log(collided)
 	interact_label.text = ""
-	if focused_object != collided_object and focused_object != null:
+	if focused_object != collided and focused_object != null:
 		focused_object._unfocus()
 		focused_object = null
 
-	if collided_object:
+	if collided:
+		collided_object = collided.get_node("Interactable")
+
 		if collided_object and collided_object is Interactable:
 			#DebugConsole.log(str(collided_object.name))
 			if collided_object.is_interactable == false:

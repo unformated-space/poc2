@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://oq0qipop3fld"]
+[gd_scene load_steps=6 format=3 uid="uid://oq0qipop3fld"]
 
 [ext_resource type="Script" path="res://grid_system/Block.gd" id="1_gy37b"]
 [ext_resource type="Texture2D" uid="uid://bd5moswvqp8uh" path="res://assets/ui-test/b.png" id="2_ph5h1"]
+[ext_resource type="Script" path="res://scripts/intearction_sys/Interactable.gd" id="3_sie60"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0l87s"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -10,11 +11,10 @@ size = Vector3(0.5, 0.5, 0.5)
 margin = 0.0
 points = PackedVector3Array(0.25, 0.25, 0.25, 0.25, 0.25, -0.25, -0.25, 0.25, 0.25, 0.25, -0.25, 0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25)
 
-[node name="Block" type="Area3D" node_paths=PackedStringArray("mesh_instance_3d")]
+[node name="Block" type="Area3D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_gy37b")
-mesh_instance_3d = NodePath("mesh")
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 layers = 2
@@ -31,3 +31,7 @@ anchor_bottom = 0.059
 offset_right = -23.36
 offset_bottom = -23.72
 texture = ExtResource("2_ph5h1")
+
+[node name="Interactable" type="Node3D" parent="." node_paths=PackedStringArray("mesh_instance_3d")]
+script = ExtResource("3_sie60")
+mesh_instance_3d = NodePath("../mesh")
