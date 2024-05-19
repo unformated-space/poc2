@@ -3,7 +3,7 @@ class_name Interactor
 
 # TODO: fix this paths of hell (../../../Player)
 @onready var ignore_this := get_node("/root/world/Entity/Player")
-@onready var raycast= get_node("/root/world/Entity/Player/CameraController/pivot/interact_raycast/raycastEnd")
+@onready var raycast= get_node("/root/world/Player/Player/CameraController/pivot/interact_raycast/raycastEnd")
 @onready var interact_label = $interact_label
 var focused_object
 var block_path =  ["res://grid_system/Block.tscn", "res://grid_system/block_library/seat.tscn"]
@@ -56,6 +56,7 @@ func _process(_delta):
 			var new_position = get_collision_point ( )  + forward_direction
 			block_instance.initial_object = collided_object
 			block_instance.initial_hit_normal = new_position
+			block_instance.first_block =true 
 			_grids.add_child(block_instance)
 	else:
 		## TODO: mover esto a gridd
@@ -66,6 +67,7 @@ func _process(_delta):
 			var forward_direction = raycast.global_transform.basis.z.normalized() * Vector3(0,0 ,1)
 			var new_position = raycast.global_position  + forward_direction
 			block_instance.initial_hit_normal = new_position
+			block_instance.first_block =true
 			_grids.add_child(block_instance)
 			
 	if Input.is_action_just_released("item_bar_1"):

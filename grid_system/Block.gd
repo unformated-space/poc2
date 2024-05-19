@@ -8,7 +8,7 @@ extends Interactable
 #@onready var grid_container = $"."
 var type =  "armor"
 #@onready var test_block = get_node("/root/world/Entity/Player/right_hand/test/Block")
-
+var first_block = false
 var block_path =  ["res://grid_system/Block.tscn", "res://grid_system/block_library/seat.tscn"]
 var initial_hit_normal : Vector3 =  Vector3.ZERO
 var initial_object : Object
@@ -22,8 +22,9 @@ func _interact_left(hit_normal, hit_point, collided_object):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var grids_root = get_parent()
-	if grids_root.name == "_grids":
+	if grids_root.name == "_grids" and first_block:
 		print ("onready")
+		debug_console.log(first_block)
 		var new_grid_container
 		var voxel_tool = voxel_lod_terrain.get_voxel_tool()
 		if initial_object:
