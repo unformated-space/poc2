@@ -214,5 +214,5 @@ streaming_system = 1
 
 [node name="menu" parent="." instance=ExtResource("12_q1b7v")]
 
-[node name="_grids" type="Node3D" parent="."]
+[node name="grids_manager" type="Node3D" parent="."]
 script = ExtResource("14_8m2gi")

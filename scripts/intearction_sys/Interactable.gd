@@ -44,7 +44,7 @@ func _focus(hit_normal):
 		var shader = load("res://assets/shaders/outliner.gdshader")
 		material.shader = shader
 		mesh_instance_3d.set_material_overlay(material)
-	
+		
 func _interact_left(_hit_normal, _hit_point, _collided_object):
 	hit_normal = _hit_normal
 	hit_point = _hit_point
