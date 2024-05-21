@@ -30,6 +30,7 @@ func _process(_delta):
 
 		if collided_object and collided_object is Interactable:
 			#DebugConsole.log(str(collided_object.name))
+			#DebugConsole.log(str(collided_object.get_class()))
 			if collided_object.is_interactable == false:
 				return
 			collided_object._focus(get_collision_point())
@@ -67,32 +68,21 @@ func _process(_delta):
 			_grids.add_child(block_instance)
 	else:
 		## TODO: mover esto a gridd
-		if Input.is_action_just_pressed("mouse_right_click"):
+		if Input.is_action_just_pressed("mouse_right_click") :
+			debug_console.log("entre aca")
 			var forward_direction = raycast_end_node.global_transform.basis.z.normalized() * Vector3(0,0 ,1)
 			var new_position = raycast_end_node.global_position  + forward_direction
 			grids_manager.create(false, new_position)
-			#var _grids = get_node("/root/world/grids_manager")
-			#var block_instance = load(block_path[Globals.active_item]).instantiate()
-			#var forward_direction = raycast_end_node.global_transform.basis.z.normalized() * Vector3(0,0 ,1)
-			#var new_position = get_collision_point ( )  + forward_direction
-			#block_instance.initial_object = collided_object
-			#block_instance.initial_hit_normal = new_position
-			#block_instance.first_block =true 
-			#_grids.add_child(block_instance)
 
 
-			##add_new_grid(null)
-			#var _grids = get_node("/root/world/_grids")
-			#var block_instance = load(block_path[Globals.active_item]).instantiate()
-			#var forward_direction = raycast_end_node.global_transform.basis.z.normalized() * Vector3(0,0 ,1)
-			#var new_position = raycast_end_node.global_position  + forward_direction
-			#block_instance.initial_hit_normal = new_position
-			#block_instance.first_block =true
-			#_grids.add_child(block_instance)
-			#
 	if Input.is_action_just_released("item_bar_1"):
-		Globals.active_item = 0
+		Globals.active_item = 1
 	if Input.is_action_just_released("item_bar_2"):
 		Globals.active_item = 1
 	if Input.is_action_just_released("item_bar_3"):
 		Globals.active_item = 2
+	#if Input.is_action_just_pressed("mouse_right_click") :
+		#debug_console.log("entre aca")
+		#var forward_direction = raycast_end_node.global_transform.basis.z.normalized() * Vector3(0,0 ,1)
+		#var new_position = raycast_end_node.global_position  + forward_direction
+		#grids_manager.create(false, new_position)

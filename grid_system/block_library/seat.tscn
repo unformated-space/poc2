@@ -37,7 +37,7 @@ offset_bottom = 40.0
 texture = ExtResource("3_vjhcc")
 
 [node name="CameraController" parent="." instance=ExtResource("4_btfrd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
 
 [node name="Interactable" type="Node3D" parent="." node_paths=PackedStringArray("mesh_instance_3d")]
 script = ExtResource("5_1mqk7")

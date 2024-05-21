@@ -1,12 +1,6 @@
 class_name Interactable
 extends Node3D
 
-var menu_index :=0
-var menu_lenght := 0
-var wheel_timer := 0.0
-var move_direction := ""
-var menu_actual = 0
-var menu : PopupMenu
 
 @export var mesh_instance_3d: MeshInstance3D
 
@@ -61,6 +55,15 @@ func _interact_right(_hit_normal, _hit_point, _collided_object):
 	
 func report():
 	DebugConsole.log("resistance is futile")
+	
+	
+	
+var menu_index :=0
+var menu_lenght := 0
+var wheel_timer := 0.0
+var move_direction := ""
+var menu_actual = 0
+var menu : PopupMenu
 
 func show_menu(item_map):
 	var node_scene = load("res://scenes/control.tscn").instantiate()
