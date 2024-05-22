@@ -6,6 +6,7 @@ extends Area3D
 @onready var grid = get_parent()
 #@onready var grid_container = $"."
 var type =  "armor"
+var mass_value = 100
 #@onready var test_block = get_node("/root/world/Entity/Player/right_hand/test/Block")
 var block_path =  ["res://grid_system/Block.tscn", "res://grid_system/block_library/seat.tscn"]
 #func _interact_right(hit_normal, hit_point, collided_object):

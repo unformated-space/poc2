@@ -1,8 +1,9 @@
-extends Node3D
+extends PhysicsBody3D
 
 var grid_UUID:String
-var grid : Array
+var grid : Dictionary
 var block_path =  ["res://grid_system/Block.tscn", "res://grid_system/block_library/seat.tscn"]
+@onready var grid_body = $"."
 
 
 func _ready():
@@ -72,7 +73,10 @@ func remove_block(hit_normal,hit_point,collided_object):
 
 func block_added(id):
 	if id.name.begins_with("area"):
-		grid.append(id)
+		grid[id.name]={"type": id.type,"mass_value": id.mass_value}
 		id.add_to_group(grid_UUID)
-	#for enemigo in get_tree().get_nodes_in_group(grid_UUID):
-		#DebugConsole.log("the friends "+ str(enemigo))
+		if grid_body.get_class() == "RigidBody3D":
+			grid_body.mass = grid[id.name]["mass_value"]
+	##for enemigo in get_tree().get_nodes_in_group(grid_UUID):
+		##DebugConsole.log("the friends "+ str(enemigo))
+		#debug_console.log(grid[id.name])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bk0hptkeov7eq"]
+[gd_scene load_steps=31 format=3 uid="uid://bk0hptkeov7eq"]
 
 [ext_resource type="PackedScene" uid="uid://d3675nehxlohi" path="res://scenes/entity.tscn" id="1_dv0ft"]
 [ext_resource type="Texture2D" uid="uid://cgfitu57oeqa7" path="res://assets/kloppenheim_06_puresky_4k.hdr" id="3_aayaa"]
@@ -35,12 +35,6 @@ sky_rotation = Vector3(0, 2.53945, 0)
 tonemap_mode = 2
 ssao_enabled = true
 glow_enabled = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_4qrpk"]
-size = Vector3(200, 10, 50)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7qh56"]
-points = PackedVector3Array(101.567, 6.10987, 27.381, -101.567, -6.58606, -26.5873, -101.567, 6.10987, -26.5873, 101.567, -6.58606, -26.5873, -101.567, -6.58606, 27.381, -101.567, 6.10987, 27.381, 101.567, 6.10987, -26.5873, 101.567, -6.58606, 27.381)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_toivy"]
 albedo_color = Color(0.982635, 0, 0.025059, 1)
@@ -92,7 +86,7 @@ text = "ss"
 [node name="EnvStuff" type="Node3D" parent="."]
 
 [node name="PurupleStaticBox2" type="CSGBox3D" parent="EnvStuff"]
-transform = Transform3D(1, 0, 0, 0, 0.52, 0, 0, 0, 1, -65.678, -7.4155, -0.5)
+transform = Transform3D(1, 0, 0, 0, 0.52, 0, 0, 0, 1, -65.678, -35.6251, -0.5)
 material_override = SubResource("StandardMaterial3D_im5on")
 use_collision = true
 size = Vector3(243, 22, 52)
@@ -115,19 +109,6 @@ visible = false
 cell_size = Vector3(0.2, 0.2, 0.2)
 metadata/_editor_floor_ = Vector3(0, 5, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="EnvStuff"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 66)
-collision_layer = 3
-collision_mask = 3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="EnvStuff/StaticBody3D"]
-transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -85, -54, -15)
-mesh = SubResource("BoxMesh_4qrpk")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvStuff/StaticBody3D"]
-transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -85, -54, -15)
-shape = SubResource("ConvexPolygonShape3D_7qh56")
-
 [node name="StaticBody3D2" type="StaticBody3D" parent="EnvStuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17068, 0, 0)
 
@@ -141,12 +122,12 @@ skeleton = NodePath("../../StaticBody3D2")
 shape = SubResource("ConcavePolygonShape3D_br5tw")
 
 [node name="Player" parent="." instance=ExtResource("1_dv0ft")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.288, 1.36561)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -27.9216, 1.36561)
 
 [node name="RandomStuffTest" type="Node3D" parent="."]
 
 [node name="whiteBlock" type="RigidBody3D" parent="RandomStuffTest"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -28.2096, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RandomStuffTest/whiteBlock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16831, -3.15433)
@@ -157,7 +138,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16831, -3.15433)
 shape = SubResource("ConvexPolygonShape3D_7smqk")
 
 [node name="GreenBlock" type="RigidBody3D" parent="RandomStuffTest" node_paths=PackedStringArray("mesh_instance_3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.68809, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.68809, -28.2096, 0)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("7_edy68")
@@ -179,7 +160,7 @@ mesh_instance_3d = NodePath("../MeshInstance3D")
 interact_prompt = "sarasear"
 
 [node name="OrangeBlock" type="RigidBody3D" parent="RandomStuffTest" node_paths=PackedStringArray("mesh_instance_3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.76605, -1, 6.96332)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.76605, -29.2096, 6.96332)
 collision_layer = 2
 script = ExtResource("7_44b1g")
 mesh_instance_3d = NodePath("MeshInstance3D")

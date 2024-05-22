@@ -20,6 +20,13 @@ var crouch : bool =  false
 var rotate_left: bool =  false
 var rotate_right : bool =  false
 
+#for thrusters
+
+var power_x = 1000  # Ajusta el valor según tus necesidades
+var power_y = 1000  # Ajusta el valor según tus necesidades
+var power_z = 1000  # Ajusta el valor según tus necesidades
+
+
 #for player
 var jetpack_input : bool =  false
 var inertiaDampener : bool =  false
@@ -34,48 +41,42 @@ func apply_rotation(quat):
 	rigid.global_transform.basis = new_basis
 
 ## FIXME: check if player_jetpacking is the best way or pass an available movemet angles based on trhusters available
-func handle_movement(direction, player_jetpacking: bool = false):
+func handle_movement(direction, speed, player_jetpacking: bool = false):
 	var rotation_speed = 0.01
 	var quatz := Quaternion.IDENTITY
-	#if direction == Vector3.ZERO:
+
 	if move_fwd:
-		direction += -rigid.transform.basis.z
+		direction += -(rigid.transform.basis.z * power_z)  # Modificación
 	if move_back:
-		direction += rigid.transform.basis.z
+		direction += (rigid.transform.basis.z * power_z)  # Modificación
 	if move_left:
-		direction += -rigid.transform.basis.x
+		direction += -(rigid.transform.basis.x*power_x)
 	if move_right:
-		direction += rigid.transform.basis.x
+		direction += rigid.transform.basis.x*power_x
 	if player_jetpacking:
 		if jump:
-			direction += rigid.transform.basis.y
+			direction += rigid.transform.basis.y*power_y
 		if crouch:
-			direction += -rigid.transform.basis.y
-			
-		quatz *= Quaternion(rigid.transform.basis.x,camera.camera_angle_z)
+			direction += -(rigid.transform.basis.y*power_y)
+		quatz *= Quaternion(rigid.transform.basis.x, camera.camera_angle_z)
 		if rotate_left:
 			quatz *= Quaternion(rigid.transform.basis.z, rotation_speed)  # Rotate around local z-axis
 		elif rotate_right:
 			quatz *= Quaternion(rigid.transform.basis.z, -rotation_speed)
-		apply_rotation(quatz)
-	apply_rotation(Quaternion(rigid.transform.basis.y, camera.camera_angle_y)*quatz)
+	apply_rotation(Quaternion(rigid.transform.basis.y, camera.camera_angle_y) * quatz)
 	camera.camera_angle_y = 0.0
 	camera.camera_angle_z = 0.0
-	return direction
 
+	# Aplica la fuerza local
+	rigid.apply_central_force(direction)  # Modificación
 
-
-func apply_movement(direction, speed):
-	if direction.length() > 0:
-		direction = direction.normalized() * speed
-	rigid.apply_central_force(direction * power)
-
+	# Limita la velocidad máxima del rigidbody
 	var current_velocity = rigid.linear_velocity
 	var current_speed = current_velocity.length()
 	if current_speed > speed:
 		current_velocity = current_velocity.normalized() * speed
 		rigid.linear_velocity = current_velocity
-#
+
 func dampenersContrls():
 	dampeners = !dampeners
 	if dampeners:

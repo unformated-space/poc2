@@ -9,7 +9,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85ue2"]
 albedo_texture = ExtResource("2_7qve6")
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ub6o2"]
+[sub_resource type="PrismMesh" id="PrismMesh_dq6h8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2y40k"]
 
@@ -28,7 +28,7 @@ current = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 material_override = SubResource("StandardMaterial3D_85ue2")
-mesh = SubResource("CapsuleMesh_ub6o2")
+mesh = SubResource("PrismMesh_dq6h8")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]

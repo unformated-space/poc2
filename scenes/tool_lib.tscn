@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/tools/voxel_tool.gd" id="4_fpv7h"]
 [ext_resource type="Texture2D" uid="uid://cdn3va48j8kt3" path="res://assets/ui-test/2.png" id="4_i8atp"]
 [ext_resource type="Texture2D" uid="uid://kle38q5vk5ec" path="res://assets/ui-test/3.png" id="6_iaqwr"]
-[ext_resource type="Script" path="res://scripts/tools/blocl_tool.gd" id="7_04ls2"]
+[ext_resource type="Script" path="res://scripts/tools/block_tool.gd" id="7_04ls2"]
 [ext_resource type="PackedScene" uid="uid://ce645bb5afm2e" path="res://scenes/tool_mods/blocks_forms.tscn" id="9_8d8ad"]
 
 [node name="ToolLib" type="Node3D"]

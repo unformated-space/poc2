@@ -19,6 +19,7 @@ var physics_state
 func _ready():
 	#text.scroll_following = true
 	lock_rotation = true
+	motion_controller.power_z += 1000
 	#on_ready()
 
 func _process(_delta):
@@ -36,11 +37,10 @@ func _integrate_forces(state):
 
 func _physics_process(delta):
 	if player_is_grounded or jetpack:  # Comprobar si el jugador puede moverse
-		var direction = motion_controller.handle_movement(Vector3.ZERO, jetpack)
 		var speed = handle_speed()
 		if jetpack:
 			gravity_scale = 0
-			motion_controller.apply_movement(direction, speed)
+			motion_controller.handle_movement(Vector3.ZERO, speed, jetpack)
 		else:
 			gravity_scale = 1
 			linear_damp = 2
@@ -49,7 +49,7 @@ func _physics_process(delta):
 				velocity.y += motion_controller.gravity * delta
 			else:
 				velocity.y = max(velocity.y, 0) 
-			motion_controller.apply_movement(direction, speed)
+			motion_controller.handle_movement(Vector3.ZERO, speed, jetpack)
 	var ground_data = detect_ground()
 	if ground_data["is_on_ground"]:
 		handle_slopes(physics_state, max_slope_angle_degrees, ground_data)

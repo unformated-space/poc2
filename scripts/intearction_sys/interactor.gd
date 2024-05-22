@@ -1,21 +1,20 @@
 extends RayCast3D
 class_name Interactor
 
-# TODO: fix this paths of hell (../../../Player)
-@onready var ignore_this := get_node("/root/world/Player/Player")
-@onready var raycast_end_node= get_node("/root/world/Player/Player/CameraController/pivot/interact_raycast/raycastEnd")
+# TODO: ver si esto tiene sentido paraq inore al body del q nace
+@onready var ignore_this := get_node("../../../")
 @onready var interact_label = $interact_label
+@onready var raycast_end_node = $raycastEnd
 
 @onready var grids_manager := get_node("/root/world/grids_manager")
 
 
 
 var focused_object
-var collided_object 
-var block_path =  ["res://grid_system/Block.tscn", "res://grid_system/block_library/seat.tscn"]
+var collided_object
 func _ready():
 	add_exception(ignore_this)
-	pass # Replace with function body.
+	debug_console.log(ignore_this)
 
 func _process(_delta):
 	var collided = get_collider()
@@ -28,6 +27,7 @@ func _process(_delta):
 	if collided:
 		collided_object = collided.get_node("Interactable")
 
+		#debug_console.log(collided.get_class())
 		if collided_object and collided_object is Interactable:
 			#DebugConsole.log(str(collided_object.name))
 			#DebugConsole.log(str(collided_object.get_class()))
@@ -57,26 +57,22 @@ func _process(_delta):
 				#collided_object._interact(get_collision_point())
 				collided_object._interact_left(get_collision_normal(),get_collision_point(), collided_object)
 
-		elif collided_object and collided_object.get_class()=="VoxelLodTerrain" and Input.is_action_just_pressed("mouse_right_click"):
+		elif collided and collided.get_class()=="VoxelLodTerrain" and Input.is_action_just_pressed("mouse_right_click"):
+			
 			var _grids = get_node("/root/world/_grids")
-			var block_instance = load(block_path[Globals.active_item]).instantiate()
 			var forward_direction = raycast_end_node.global_transform.basis.z.normalized() * Vector3(0,0 ,1)
 			var new_position = get_collision_point ( )  + forward_direction
-			block_instance.initial_object = collided_object
-			block_instance.initial_hit_normal = new_position
-			block_instance.first_block =true 
-			_grids.add_child(block_instance)
+			grids_manager.create(true, new_position)
 	else:
 		## TODO: mover esto a gridd
 		if Input.is_action_just_pressed("mouse_right_click") :
-			debug_console.log("entre aca")
 			var forward_direction = raycast_end_node.global_transform.basis.z.normalized() * Vector3(0,0 ,1)
 			var new_position = raycast_end_node.global_position  + forward_direction
 			grids_manager.create(false, new_position)
 
 
 	if Input.is_action_just_released("item_bar_1"):
-		Globals.active_item = 1
+		Globals.active_item = 0
 	if Input.is_action_just_released("item_bar_2"):
 		Globals.active_item = 1
 	if Input.is_action_just_released("item_bar_3"):

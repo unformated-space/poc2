@@ -1,6 +1,6 @@
 extends Node
 
-var active_item : int = 1
+var active_item : int = 0
 var active_mod : int = 0
 var wheel_selected : int = 0
 var quick_item_01 : int =0

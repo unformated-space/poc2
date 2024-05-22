@@ -3,17 +3,20 @@ extends Block
 #@onready var body = get_node("../")
 @onready var body = get_parent()
 @onready var camera_controller = get_node("CameraController")
+@onready var spring_arm_3d = $CameraController/pivot/SpringArm3D
 
 @onready var motion_controller = Movement_controller.new(body, cammera_scene)
 
 @onready var camera_3d = $CameraController/pivot/SpringArm3D/Camera3D
 @onready var player = get_node("/root/world/Player")
 var player_on =  false
-#func _init():
-	#type =  "seat"
+func _init():
+	type =  "seat"
+	mass_value =  50
 	#camera_controller.process_mode = 4
 func _ready():
 	type =  "seat"
+	spring_arm_3d.collision_mask=5
 	camera_controller.process_mode = 4
 	motion_controller.power = 1000
 	body.lock_rotation = true
