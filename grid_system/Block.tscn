@@ -12,8 +12,8 @@ margin = 0.0
 points = PackedVector3Array(0.25, 0.25, 0.25, 0.25, 0.25, -0.25, -0.25, 0.25, 0.25, 0.25, -0.25, 0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25)
 
 [node name="Block" type="Area3D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 258
+collision_mask = 258
 script = ExtResource("1_gy37b")
 
 [node name="mesh" type="MeshInstance3D" parent="."]

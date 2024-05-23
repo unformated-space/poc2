@@ -9,7 +9,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85ue2"]
 albedo_texture = ExtResource("2_7qve6")
 
-[sub_resource type="PrismMesh" id="PrismMesh_dq6h8"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1sglj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2y40k"]
 
@@ -23,12 +23,9 @@ cammera_scene = NodePath("CameraController")
 [node name="CameraController" parent="Player" instance=ExtResource("3_xtlsu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684302, -0.352048)
 
-[node name="Camera3D" parent="Player/CameraController/pivot/SpringArm3D" index="0"]
-current = true
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 material_override = SubResource("StandardMaterial3D_85ue2")
-mesh = SubResource("PrismMesh_dq6h8")
+mesh = SubResource("CapsuleMesh_1sglj")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
@@ -47,5 +44,3 @@ transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, -0.190
 
 [node name="test" type="Node3D" parent="Player/right_hand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.587873, 0.171746, -2.62213)
-
-[editable path="Player/CameraController"]

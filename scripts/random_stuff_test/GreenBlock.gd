@@ -18,9 +18,7 @@ func random_color():
 
 func _process(delta):
 	if interactable.interacted:
-		interactable.interacted = false
-		print("saraseado")
-		print(mesh_instance_3d.get_active_material(0))
+		qwe.l("saraseado")
 		var material = StandardMaterial3D.new()
 		material.albedo_color = random_color()
 		mesh_instance_3d.material_override = material

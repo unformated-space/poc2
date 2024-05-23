@@ -11,3 +11,4 @@
 
 [editable path="Block"]
 [editable path="Seat"]
+[editable path="Seat/CameraController"]

@@ -1,12 +1,16 @@
 extends Node
 #@onready var chat_log = $chatWindow/VBoxContainer/PanelContainer/MarginContainer/chatLog
 
-func debugger(args):
+func d(args):
+	var chat_log = get_node("/root/world/GUI/chatWindow/VBoxContainer/PanelContainer/MarginContainer/chatLog")
 	var result = ""
 	for arg in args:
 		result += " "+str(arg)
-	DebugConsole.log(result)
-	
+	chat_log.add_text(result+"\n")
+
+func l(args):
+	var chat_log = get_node("/root/world/GUI/chatWindow/VBoxContainer/PanelContainer/MarginContainer/chatLog")
+	chat_log.add_text(str(args)+"\n")
 
 func random_color():
 	# Genera valores aleatorios para los componentes rojo, verde y azul

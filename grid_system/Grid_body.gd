@@ -27,7 +27,7 @@ func add_block(hit_normal,hit_point,collided_object):
 	# Check if there is already a block at this position (optional, depending on your design)
 	for child in get_children():
 		if child.transform.origin == new_block_position:
-			DebugConsole.log("Warning: Block already here "+child.name)
+			qwe.l("Warning: Block already here "+child.name)
 			return
 			
 	# Instance the block

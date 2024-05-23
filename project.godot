@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 Config="*res://scripts/autoloads/config.gd"
 debug_console="*res://addons/copper_dc/debug_console.tscn"
-qwetool="*res://scripts/autoloads/qwetool.gd"
+qwe="*res://scripts/autoloads/qwetool.gd"
 Globals="*res://scripts/autoloads/Globals.gd"
 
 [display]

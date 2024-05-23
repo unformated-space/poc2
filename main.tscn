@@ -17,6 +17,8 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_im5on"]
 albedo_texture = ExtResource("4_isu3i")
+uv1_triplanar = true
+uv2_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xejfd"]
 albedo_texture = ExtResource("7_g6mth")
@@ -101,7 +103,7 @@ size = Vector3(243, 22, 26)
 environment = SubResource("Environment_60vr0")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="EnvStuff"]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0.622065, 2.91227, -1.77372)
+transform = Transform3D(-0.220936, -0.190383, 0.956526, 0.238205, 0.940526, 0.242218, -0.945751, 0.281364, -0.162446, 38.2396, 1.25326, -1.77372)
 shadow_enabled = true
 
 [node name="default_grid_02" type="GridMap" parent="EnvStuff"]
@@ -197,3 +199,6 @@ streaming_system = 1
 
 [node name="grids_manager" type="Node3D" parent="."]
 script = ExtResource("14_8m2gi")
+
+[editable path="Player"]
+[editable path="Player/Player/CameraController"]

@@ -58,12 +58,10 @@ func _integrate_forces(state):
 
 func _physics_process(delta):
 	if player_on:
-		camera_controller.process_mode = 0
-		var direction = motion_controller.handle_movement(Vector3.ZERO, true)
 		var speed = handle_speed()
+		camera_controller.process_mode = 0
+		var direction = motion_controller.handle_movement(Vector3.ZERO,speed, true)
 		body.gravity_scale = 0
-		
-		motion_controller.apply_movement(direction, speed)
 
 func handle_speed():
 	return 50

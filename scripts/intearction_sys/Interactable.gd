@@ -21,11 +21,14 @@ var collided_object : Object
 func _interact(_hit_normal, _hit_point = Vector3.ZERO):
 	hit_normal = _hit_normal
 	hit_point = _hit_point
-	DebugConsole.log(hit_normal)
+	qwe.l(hit_normal)
 	
 	interacted =  true
-	
 
+func _process(_delta):
+	interacted = false
+	interacted_left = false
+	interacted_right = false
 
 func _unfocus():
 	if is_focuseable:
@@ -54,7 +57,7 @@ func _interact_right(_hit_normal, _hit_point, _collided_object):
 	
 	
 func report():
-	DebugConsole.log("resistance is futile")
+	qwe.l("resistance is futile")
 	
 	
 	
@@ -74,7 +77,7 @@ func show_menu(item_map):
 		menu.add_item(item_map[key],i)
 		i +=1
 	menu_lenght = item_map.keys().size()
-	DebugConsole.log(menu_index)
+	qwe.l(menu_index)
 	menu.connect("popup_hide", menu_hide)
 
 	var size = menu.get_size ()
@@ -86,10 +89,10 @@ func show_menu(item_map):
 	menu.connect("index_pressed", _onPress)
 	
 func _onPress(id_pressed):
-	DebugConsole.log(id_pressed)
+	qwe.l(id_pressed)
 
 
 func menu_hide():
-	DebugConsole.log ("me cerre")
+	qwe.l ("me cerre")
  
 

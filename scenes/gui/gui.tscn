@@ -15,7 +15,6 @@ metadata/_edit_vertical_guides_ = [0.0]
 metadata/_edit_horizontal_guides_ = [1080.0, 563.0]
 
 [node name="chatWindow" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.709
@@ -46,16 +45,6 @@ theme_override_constants/margin_bottom = 10
 [node name="chatLog" type="RichTextLabel" parent="chatWindow/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 17
-text = "Create Node
-Resize Control \"RichTextLabel\" to (356, 217)
-Move CanvasItem \"Control\" to (30, 52)
-Scene Undo: Move CanvasItem \"Control\" to (30, 52)
-Create Node
-Resize Control \"RichTextLabel\" to (356, 217)
-Move CanvasItem \"Control\" to (30, 52)
-Scene Undo: Move CanvasItem \"Control\" to (30, 52)
-Move CanvasItem \"RichTextLabel\" to (49, 816)
-Resize Control \"RichTextLabel\" to (578, 279)"
 scroll_following = true
 metadata/_edit_use_anchors_ = true
 
@@ -104,10 +93,9 @@ offset_left = 45.0
 offset_top = 40.0
 offset_right = 199.0
 offset_bottom = 63.0
-text = "ss"
+text = "speed"
 
 [node name="Control" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -148,7 +136,6 @@ anchor_bottom = 14.85
 color = Color(0.196078, 1, 1, 1)
 
 [node name="mod_list_1_back" type="ColorRect" parent="Control"]
-visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = -1

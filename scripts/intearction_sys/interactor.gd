@@ -14,11 +14,13 @@ var focused_object
 var collided_object
 func _ready():
 	add_exception(ignore_this)
-	debug_console.log(ignore_this)
+	qwe.l(ignore_this)
 
 func _process(_delta):
+	for child in raycast_end_node.get_children():
+		add_exception(child)
 	var collided = get_collider()
-	#DebugConsole.log(collided)
+	#qwe.l(collided)
 	interact_label.text = ""
 	if focused_object != collided and focused_object != null:
 		focused_object._unfocus()
@@ -27,10 +29,10 @@ func _process(_delta):
 	if collided:
 		collided_object = collided.get_node("Interactable")
 
-		#debug_console.log(collided.get_class())
+		#qwe.l(collided.get_class())
 		if collided_object and collided_object is Interactable:
-			#DebugConsole.log(str(collided_object.name))
-			#DebugConsole.log(str(collided_object.get_class()))
+			#qwe.l(str(collided_object.name))
+			#qwe.l(str(collided_object.get_class()))
 			if collided_object.is_interactable == false:
 				return
 			collided_object._focus(get_collision_point())
@@ -70,15 +72,19 @@ func _process(_delta):
 			var new_position = raycast_end_node.global_position  + forward_direction
 			grids_manager.create(false, new_position)
 
-
+	const BlockTool = preload("res://scripts/tools/block_tool.gd")
+	var tool = BlockTool.new()
 	if Input.is_action_just_released("item_bar_1"):
 		Globals.active_item = 0
+		tool.change_block(raycast_end_node)
 	if Input.is_action_just_released("item_bar_2"):
 		Globals.active_item = 1
+		tool.change_block(raycast_end_node)
+		qwe.d([raycast_end_node, "aca"])
 	if Input.is_action_just_released("item_bar_3"):
 		Globals.active_item = 2
 	#if Input.is_action_just_pressed("mouse_right_click") :
-		#debug_console.log("entre aca")
+		#qwe.l("entre aca")
 		#var forward_direction = raycast_end_node.global_transform.basis.z.normalized() * Vector3(0,0 ,1)
 		#var new_position = raycast_end_node.global_position  + forward_direction
 		#grids_manager.create(false, new_position)

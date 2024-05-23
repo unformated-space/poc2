@@ -13,9 +13,6 @@ var player_is_grounded: bool = true
 var max_slope_angle_degrees := 80
 var physics_state
 
-
-
-
 func _ready():
 	#text.scroll_following = true
 	lock_rotation = true
@@ -26,7 +23,6 @@ func _process(_delta):
 	#var speed_m_s = linear_velocity.length()
 	if motion_controller.jetpack_input:
 		jetpack = !jetpack
-		print("jetpack")
 	if motion_controller.inertiaDampener:
 		motion_controller.dampenersContrls()
 	motion_controller.jetpack_input =  false
