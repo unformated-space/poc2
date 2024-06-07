@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3675nehxlohi"]
+[gd_scene load_steps=10 format=3 uid="uid://d3675nehxlohi"]
 
 [ext_resource type="Script" path="res://scripts/player_related/player_movement.gd" id="1_bqh38"]
 [ext_resource type="Texture2D" uid="uid://dm04ybjniiou2" path="res://assets/textures/kenney_prototype_textures/purple/texture_08.png" id="2_7qve6"]
@@ -12,6 +12,14 @@ albedo_texture = ExtResource("2_7qve6")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1sglj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2y40k"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_o0vrn"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Node3D" type="Node3D"]
 
@@ -44,3 +52,9 @@ transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, -0.190
 
 [node name="test" type="Node3D" parent="Player/right_hand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.587873, 0.171746, -2.62213)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../Player")
+replication_config = SubResource("SceneReplicationConfig_o0vrn")
+
+[node name="VoxelViewer" type="VoxelViewer" parent="."]

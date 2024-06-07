@@ -1,5 +1,8 @@
 extends Node
 
+@onready var clientUUID: String = "UUID"+str(ResourceUID.create_id())
+
+
 var active_item : int = 0
 var active_mod : int = 0
 var wheel_selected : int = 0
